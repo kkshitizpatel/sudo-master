@@ -1,0 +1,583 @@
+[gd_scene load_steps=21 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/MainMenuScreen.gd" id="1_main"]
+[ext_resource type="PackedScene" path="res://scenes/components/AuroraBackground.tscn" id="2_aurora"]
+[ext_resource type="Texture2D" path="res://assets/icons/cloud_bubble.svg" id="3_cloud"]
+[ext_resource type="Texture2D" path="res://assets/icons/icon_star_gold.svg" id="4_star_gold"]
+[ext_resource type="Texture2D" path="res://assets/icons/icon_pumpkin_3d.svg" id="5_pumpkin"]
+[ext_resource type="StyleBox" path="res://assets/themes/btn_circle_gear.tres" id="6_gear_box"]
+[ext_resource type="Texture2D" path="res://assets/icons/icon_gear_blue.svg" id="7_gear_icon"]
+[ext_resource type="Texture2D" path="res://assets/icons/star_soft_blue.svg" id="8_star_blue"]
+[ext_resource type="StyleBox" path="res://assets/themes/welcome_floating_tile.tres" id="9_tile"]
+[ext_resource type="StyleBox" path="res://assets/themes/claim_outer_card.tres" id="10_action_card"]
+[ext_resource type="StyleBox" path="res://assets/themes/welcome_accept_btn.tres" id="11_btn_accept"]
+[ext_resource type="StyleBox" path="res://assets/themes/welcome_accept_btn_pressed.tres" id="12_btn_accept_pressed"]
+[ext_resource type="Texture2D" path="res://assets/icons/icon_checkmark_white.svg" id="13_chk"]
+[ext_resource type="StyleBox" path="res://assets/themes/btn_new_game_glass.tres" id="14_btn_new_game"]
+[ext_resource type="StyleBox" path="res://assets/themes/nav_bar_dock.tres" id="15_dock"]
+[ext_resource type="Texture2D" path="res://assets/icons/icon_nav_home_3d.svg" id="16_nav_home"]
+[ext_resource type="Texture2D" path="res://assets/icons/icon_nav_leaderboard_3d.svg" id="17_nav_lead"]
+[ext_resource type="Texture2D" path="res://assets/icons/icon_nav_stats_3d.svg" id="18_nav_stats"]
+[ext_resource type="Texture2D" path="res://assets/icons/avatar_boy_3d.svg" id="19_avatar"]
+[ext_resource type="StyleBox" path="res://assets/themes/header_stat_pill.tres" id="20_pill"]
+[ext_resource type="Texture2D" path="res://assets/icons/icon_pencil_3d.svg" id="21_pencil"]
+
+[node name="MainMenuScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_main")
+
+[node name="AuroraBackground" parent="." instance=ExtResource("2_aurora")]
+layout_mode = 1
+
+[node name="CloudsLayer" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="CloudTopLeft" type="TextureRect" parent="CloudsLayer"]
+layout_mode = 0
+offset_left = -60.0
+offset_top = -40.0
+offset_right = 360.0
+offset_bottom = 200.0
+texture = ExtResource("3_cloud")
+expand_mode = 1
+stretch_mode = 5
+modulate = Color(1, 1, 1, 0.75)
+
+[node name="CloudTopRight" type="TextureRect" parent="CloudsLayer"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -360.0
+offset_top = -40.0
+offset_right = 60.0
+offset_bottom = 200.0
+grow_horizontal = 0
+texture = ExtResource("3_cloud")
+expand_mode = 1
+stretch_mode = 5
+flip_h = true
+modulate = Color(1, 1, 1, 0.75)
+
+[node name="CloudBottomLeft" type="TextureRect" parent="CloudsLayer"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -70.0
+offset_top = -340.0
+offset_right = 380.0
+offset_bottom = -20.0
+grow_vertical = 0
+texture = ExtResource("3_cloud")
+expand_mode = 1
+stretch_mode = 5
+modulate = Color(1, 1, 1, 0.8)
+
+[node name="CloudBottomRight" type="TextureRect" parent="CloudsLayer"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -380.0
+offset_top = -340.0
+offset_right = 70.0
+offset_bottom = -20.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("3_cloud")
+expand_mode = 1
+stretch_mode = 5
+flip_h = true
+modulate = Color(1, 1, 1, 0.8)
+
+[node name="FloatingBackground" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Tile5" type="PanelContainer" parent="FloatingBackground"]
+layout_mode = 1
+offset_left = 48.0
+offset_top = 380.0
+offset_right = 208.0
+offset_bottom = 540.0
+rotation = -0.12
+theme_override_styles/panel = ExtResource("9_tile")
+
+[node name="Label" type="Label" parent="FloatingBackground/Tile5"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.376, 0.647, 0.98, 1)
+theme_override_font_sizes/font_size = 76
+text = "5"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StarTopLeft" type="TextureRect" parent="FloatingBackground"]
+layout_mode = 1
+offset_left = 68.0
+offset_top = 570.0
+offset_right = 138.0
+offset_bottom = 640.0
+texture = ExtResource("8_star_blue")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Tile3" type="PanelContainer" parent="FloatingBackground"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -208.0
+offset_top = 380.0
+offset_right = -48.0
+offset_bottom = 540.0
+grow_horizontal = 0
+rotation = 0.14
+theme_override_styles/panel = ExtResource("9_tile")
+
+[node name="Label" type="Label" parent="FloatingBackground/Tile3"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.376, 0.647, 0.98, 1)
+theme_override_font_sizes/font_size = 76
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Tile8" type="PanelContainer" parent="FloatingBackground"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 48.0
+offset_top = -420.0
+offset_right = 208.0
+offset_bottom = -260.0
+grow_vertical = 0
+rotation = -0.1
+theme_override_styles/panel = ExtResource("9_tile")
+
+[node name="Label" type="Label" parent="FloatingBackground/Tile8"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.376, 0.647, 0.98, 1)
+theme_override_font_sizes/font_size = 76
+text = "8"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StarBottomLeft" type="TextureRect" parent="FloatingBackground"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 240.0
+offset_top = -320.0
+offset_right = 300.0
+offset_bottom = -260.0
+grow_vertical = 0
+texture = ExtResource("8_star_blue")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="PencilCenter" type="TextureRect" parent="FloatingBackground"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -70.0
+offset_top = -340.0
+offset_right = 70.0
+offset_bottom = -200.0
+grow_horizontal = 2
+grow_vertical = 0
+rotation = 0.35
+texture = ExtResource("21_pencil")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Tile7" type="PanelContainer" parent="FloatingBackground"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -208.0
+offset_top = -420.0
+offset_right = -48.0
+offset_bottom = -260.0
+grow_horizontal = 0
+grow_vertical = 0
+rotation = 0.12
+theme_override_styles/panel = ExtResource("9_tile")
+
+[node name="Label" type="Label" parent="FloatingBackground/Tile7"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.376, 0.647, 0.98, 1)
+theme_override_font_sizes/font_size = 76
+text = "7"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StarBottomRight" type="TextureRect" parent="FloatingBackground"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -300.0
+offset_top = -280.0
+offset_right = -240.0
+offset_bottom = -220.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("8_star_blue")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="SafeArea" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 54
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 54
+theme_override_constants/margin_bottom = 210
+
+[node name="MainVBox" type="VBoxContainer" parent="SafeArea"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="TopBar" type="HBoxContainer" parent="SafeArea/MainVBox"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="LevelPill" type="PanelContainer" parent="SafeArea/MainVBox/TopBar"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("20_pill")
+
+[node name="HBox" type="HBoxContainer" parent="SafeArea/MainVBox/TopBar/LevelPill"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="LevelLabel" type="Label" parent="SafeArea/MainVBox/TopBar/LevelPill/HBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.12, 0.18, 0.3, 1)
+theme_override_font_sizes/font_size = 36
+text = "Level 1"
+
+[node name="StarIcon" type="TextureRect" parent="SafeArea/MainVBox/TopBar/LevelPill/HBox"]
+custom_minimum_size = Vector2(38, 38)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("4_star_gold")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="SpacerLeft" type="Control" parent="SafeArea/MainVBox/TopBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ScorePill" type="PanelContainer" parent="SafeArea/MainVBox/TopBar"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("20_pill")
+
+[node name="HBox" type="HBoxContainer" parent="SafeArea/MainVBox/TopBar/ScorePill"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="PumpkinIcon" type="TextureRect" parent="SafeArea/MainVBox/TopBar/ScorePill/HBox"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("5_pumpkin")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ScoreLabel" type="Label" parent="SafeArea/MainVBox/TopBar/ScorePill/HBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.12, 0.18, 0.3, 1)
+theme_override_font_sizes/font_size = 36
+text = "Score: 0"
+
+[node name="BtnSettings" type="Button" parent="SafeArea/MainVBox/TopBar"]
+custom_minimum_size = Vector2(76, 76)
+layout_mode = 2
+focus_mode = 0
+theme_override_styles/normal = ExtResource("6_gear_box")
+theme_override_styles/hover = ExtResource("6_gear_box")
+theme_override_styles/pressed = ExtResource("6_gear_box")
+icon = ExtResource("7_gear_icon")
+icon_alignment = 1
+expand_icon = true
+
+[node name="HeaderSpacing" type="Control" parent="SafeArea/MainVBox"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="TitleSection" type="VBoxContainer" parent="SafeArea/MainVBox"]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="SudokuMasterLabel" type="Label" parent="SafeArea/MainVBox/TitleSection"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.18, 0.52, 0.95, 1)
+theme_override_colors/font_shadow_color = Color(0.1, 0.35, 0.8, 0.35)
+theme_override_colors/font_outline_color = Color(0.65, 0.85, 1.0, 0.95)
+theme_override_constants/shadow_offset_y = 6
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 92
+text = "Sudoku Master"
+horizontal_alignment = 1
+
+[node name="DividerBar" type="HBoxContainer" parent="SafeArea/MainVBox/TitleSection"]
+layout_mode = 2
+alignment = 1
+theme_override_constants/separation = 16
+
+[node name="LineLeft" type="ColorRect" parent="SafeArea/MainVBox/TitleSection/DividerBar"]
+custom_minimum_size = Vector2(140, 4)
+layout_mode = 2
+size_flags_vertical = 4
+color = Color(1, 1, 1, 0.8)
+
+[node name="StarCenter" type="TextureRect" parent="SafeArea/MainVBox/TitleSection/DividerBar"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("8_star_blue")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="LineRight" type="ColorRect" parent="SafeArea/MainVBox/TitleSection/DividerBar"]
+custom_minimum_size = Vector2(140, 4)
+layout_mode = 2
+size_flags_vertical = 4
+color = Color(1, 1, 1, 0.8)
+
+[node name="UpperCenterSpacer" type="Control" parent="SafeArea/MainVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.1
+
+[node name="ActionCard" type="PanelContainer" parent="SafeArea/MainVBox"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("10_action_card")
+
+[node name="ActionVBox" type="VBoxContainer" parent="SafeArea/MainVBox/ActionCard"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="BtnContinue" type="Button" parent="SafeArea/MainVBox/ActionCard/ActionVBox"]
+custom_minimum_size = Vector2(0, 126)
+layout_mode = 2
+focus_mode = 0
+theme_override_styles/normal = ExtResource("11_btn_accept")
+theme_override_styles/hover = ExtResource("11_btn_accept")
+theme_override_styles/pressed = ExtResource("12_btn_accept_pressed")
+
+[node name="HBox" type="HBoxContainer" parent="SafeArea/MainVBox/ActionCard/ActionVBox/BtnContinue"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+alignment = 1
+theme_override_constants/separation = 18
+
+[node name="CheckIcon" type="TextureRect" parent="SafeArea/MainVBox/ActionCard/ActionVBox/BtnContinue/HBox"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("13_chk")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="SafeArea/MainVBox/ActionCard/ActionVBox/BtnContinue/HBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 50
+text = "Continue"
+
+[node name="BtnNewGame" type="Button" parent="SafeArea/MainVBox/ActionCard/ActionVBox"]
+custom_minimum_size = Vector2(0, 126)
+layout_mode = 2
+focus_mode = 0
+theme_override_styles/normal = ExtResource("14_btn_new_game")
+theme_override_styles/hover = ExtResource("14_btn_new_game")
+theme_override_styles/pressed = ExtResource("14_btn_new_game")
+
+[node name="Label" type="Label" parent="SafeArea/MainVBox/ActionCard/ActionVBox/BtnNewGame"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_colors/font_color = Color(0.12, 0.23, 0.54, 1)
+theme_override_font_sizes/font_size = 50
+text = "New Game"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LowerCenterSpacer" type="Control" parent="SafeArea/MainVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.85
+
+[node name="BottomDock" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -180.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = ExtResource("15_dock")
+
+[node name="HBox" type="HBoxContainer" parent="BottomDock"]
+layout_mode = 2
+alignment = 1
+
+[node name="BtnDockHome" type="Button" parent="BottomDock/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+flat = true
+
+[node name="VBox" type="VBoxContainer" parent="BottomDock/HBox/BtnDockHome"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+alignment = 1
+theme_override_constants/separation = 8
+
+[node name="Icon" type="TextureRect" parent="BottomDock/HBox/BtnDockHome/VBox"]
+custom_minimum_size = Vector2(56, 56)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("16_nav_home")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="BottomDock/HBox/BtnDockHome/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.145, 0.388, 0.922, 1)
+theme_override_font_sizes/font_size = 26
+text = "Home"
+horizontal_alignment = 1
+
+[node name="BtnDockLeaderboard" type="Button" parent="BottomDock/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+flat = true
+
+[node name="VBox" type="VBoxContainer" parent="BottomDock/HBox/BtnDockLeaderboard"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+alignment = 1
+theme_override_constants/separation = 8
+
+[node name="Icon" type="TextureRect" parent="BottomDock/HBox/BtnDockLeaderboard/VBox"]
+custom_minimum_size = Vector2(56, 56)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("17_nav_lead")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="BottomDock/HBox/BtnDockLeaderboard/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 0.38, 0.5, 1)
+theme_override_font_sizes/font_size = 26
+text = "Leaderboard"
+horizontal_alignment = 1
+
+[node name="BtnDockStats" type="Button" parent="BottomDock/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+flat = true
+
+[node name="VBox" type="VBoxContainer" parent="BottomDock/HBox/BtnDockStats"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+alignment = 1
+theme_override_constants/separation = 8
+
+[node name="Icon" type="TextureRect" parent="BottomDock/HBox/BtnDockStats/VBox"]
+custom_minimum_size = Vector2(56, 56)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("18_nav_stats")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="BottomDock/HBox/BtnDockStats/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 0.38, 0.5, 1)
+theme_override_font_sizes/font_size = 26
+text = "Stats"
+horizontal_alignment = 1
+
+[node name="BtnDockProfile" type="Button" parent="BottomDock/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+flat = true
+
+[node name="VBox" type="VBoxContainer" parent="BottomDock/HBox/BtnDockProfile"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+alignment = 1
+theme_override_constants/separation = 8
+
+[node name="Icon" type="TextureRect" parent="BottomDock/HBox/BtnDockProfile/VBox"]
+custom_minimum_size = Vector2(56, 56)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("19_avatar")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="BottomDock/HBox/BtnDockProfile/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 0.38, 0.5, 1)
+theme_override_font_sizes/font_size = 26
+text = "Profile"
+horizontal_alignment = 1

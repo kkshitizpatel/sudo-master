@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="40" height="40">
+  <defs>
+    <filter id="starShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#3B82F6" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+  <!-- Rounded 5-pointed star -->
+  <path d="M 20 4 C 21 4 23 11 25 14 C 27 17 34 18 35 19 C 36 20 30 25 29 27 C 28 30 29 36 28 37 C 27 38 21 34 20 34 C 19 34 13 38 12 37 C 11 36 12 30 11 27 C 10 25 4 20 5 19 C 6 18 13 17 15 14 C 17 11 19 4 20 4 Z"
+        fill="#93C5FD" stroke="#60A5FA" stroke-width="1.5" stroke-linejoin="round" filter="url(#starShadow)"/>
+</svg>

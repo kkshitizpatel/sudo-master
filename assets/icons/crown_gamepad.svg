@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+  <defs>
+    <linearGradient id="goldGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FCD34D"/>
+      <stop offset="50%" stop-color="#F59E0B"/>
+      <stop offset="100%" stop-color="#D97706"/>
+    </linearGradient>
+    <linearGradient id="neonCyan" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38BDF8"/>
+      <stop offset="100%" stop-color="#3B82F6"/>
+    </linearGradient>
+  </defs>
+  <!-- Crown Base -->
+  <path d="M 25 50 L 35 22 L 50 38 L 60 15 L 70 38 L 85 22 L 95 50 Z" fill="url(#goldGlow)" stroke="#FDE68A" stroke-width="2" stroke-linejoin="round"/>
+  <!-- Crown Jewels -->
+  <circle cx="35" cy="22" r="3.5" fill="#FFF"/>
+  <circle cx="60" cy="15" r="4.5" fill="#FFF"/>
+  <circle cx="85" cy="22" r="3.5" fill="#FFF"/>
+  <!-- Gamepad Body -->
+  <path d="M 28 58 C 22 58 18 64 20 74 C 22 84 26 95 34 95 C 40 95 44 86 48 82 C 54 78 66 78 72 82 C 76 86 80 95 86 95 C 94 95 98 84 100 74 C 102 64 98 58 92 58 Z" fill="url(#neonCyan)" stroke="#93C5FD" stroke-width="2.5"/>
+  <!-- D-Pad Left -->
+  <rect x="33" y="68" width="14" height="4.5" rx="2" fill="#FFFFFF"/>
+  <rect x="38" y="63" width="4.5" height="14" rx="2" fill="#FFFFFF"/>
+  <!-- Action Buttons Right -->
+  <circle cx="80" cy="67" r="2.5" fill="#FFFFFF"/>
+  <circle cx="87" cy="74" r="2.5" fill="#FFFFFF"/>
+</svg>

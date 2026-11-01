@@ -1,0 +1,190 @@
+[gd_scene load_steps=12 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/SplashScreen.gd" id="1_splash"]
+[ext_resource type="PackedScene" path="res://scenes/components/AuroraBackground.tscn" id="2_aurora"]
+[ext_resource type="StyleBox" path="res://assets/themes/splash_card.tres" id="3_card"]
+[ext_resource type="Texture2D" path="res://assets/icons/jk_games_logo.png" id="4_logo"]
+[ext_resource type="Texture2D" path="res://assets/icons/spinner_loader.svg" id="5_spinner"]
+[ext_resource type="StyleBox" path="res://assets/themes/splash_progress_track.tres" id="6_track"]
+[ext_resource type="StyleBox" path="res://assets/themes/splash_progress_fill.tres" id="7_fill"]
+[ext_resource type="StyleBox" path="res://assets/themes/splash_home_indicator.tres" id="8_home"]
+[ext_resource type="Texture2D" path="res://assets/icons/shape_plus_cyan.svg" id="9_plus"]
+[ext_resource type="Texture2D" path="res://assets/icons/shape_triangle_amber.svg" id="10_triangle"]
+[ext_resource type="Texture2D" path="res://assets/icons/shape_ring_blue.svg" id="11_ring"]
+
+[sub_resource type="Theme" id="Theme_progressbar"]
+ProgressBar/styles/background = ExtResource("6_track")
+ProgressBar/styles/fill = ExtResource("7_fill")
+
+[node name="SplashScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_splash")
+
+[node name="AuroraBackground" parent="." instance=ExtResource("2_aurora")]
+layout_mode = 1
+
+[node name="GeometricDecorations" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ShapePlusTopLeft" type="TextureRect" parent="GeometricDecorations"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 70.0
+offset_right = 104.0
+offset_bottom = 110.0
+texture = ExtResource("9_plus")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ShapeTriangleTopRight" type="TextureRect" parent="GeometricDecorations"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -90.0
+offset_top = 260.0
+offset_right = -54.0
+offset_bottom = 296.0
+grow_horizontal = 0
+texture = ExtResource("10_triangle")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ShapeRingMidLeft" type="TextureRect" parent="GeometricDecorations"]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 1320.0
+offset_right = 68.0
+offset_bottom = 1360.0
+texture = ExtResource("11_ring")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ShapePlusMidRight" type="TextureRect" parent="GeometricDecorations"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -78.0
+offset_top = 1200.0
+offset_right = -48.0
+offset_bottom = 1230.0
+grow_horizontal = 0
+texture = ExtResource("9_plus")
+expand_mode = 1
+stretch_mode = 5
+modulate = Color(0.38, 0.51, 0.98, 0.8)
+
+[node name="SafeArea" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 60
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 40
+
+[node name="MainVBox" type="VBoxContainer" parent="SafeArea"]
+layout_mode = 2
+alignment = 1
+
+[node name="TopSpacer" type="Control" parent="SafeArea/MainVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.2
+
+[node name="HeroContainer" type="CenterContainer" parent="SafeArea/MainVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.2
+
+[node name="HeroCard" type="PanelContainer" parent="SafeArea/MainVBox/HeroContainer"]
+custom_minimum_size = Vector2(920, 1040)
+layout_mode = 2
+theme_override_styles/panel = ExtResource("3_card")
+
+[node name="LogoContainer" type="CenterContainer" parent="SafeArea/MainVBox/HeroContainer/HeroCard"]
+layout_mode = 2
+
+[node name="LogoIcon" type="TextureRect" parent="SafeArea/MainVBox/HeroContainer/HeroCard/LogoContainer"]
+custom_minimum_size = Vector2(800, 800)
+layout_mode = 2
+texture = ExtResource("4_logo")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="MidSpacer" type="Control" parent="SafeArea/MainVBox"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.6
+
+[node name="BottomLoadingSection" type="VBoxContainer" parent="SafeArea/MainVBox"]
+layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="StatusRow" type="HBoxContainer" parent="SafeArea/MainVBox/BottomLoadingSection"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="StatusLeft" type="HBoxContainer" parent="SafeArea/MainVBox/BottomLoadingSection/StatusRow"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="SpinnerIcon" type="TextureRect" parent="SafeArea/MainVBox/BottomLoadingSection/StatusRow/StatusLeft"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("5_spinner")
+expand_mode = 1
+stretch_mode = 5
+pivot_offset = Vector2(16, 16)
+
+[node name="StatusLabel" type="Label" parent="SafeArea/MainVBox/BottomLoadingSection/StatusRow/StatusLeft"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.392, 0.455, 0.549, 1)
+theme_override_font_sizes/font_size = 28
+text = "Ready to Play!"
+
+[node name="Spacer" type="Control" parent="SafeArea/MainVBox/BottomLoadingSection/StatusRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PercentLabel" type="Label" parent="SafeArea/MainVBox/BottomLoadingSection/StatusRow"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.008, 0.518, 0.780, 1)
+theme_override_font_sizes/font_size = 28
+text = "100%"
+
+[node name="ProgressBar" type="ProgressBar" parent="SafeArea/MainVBox/BottomLoadingSection"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+theme = SubResource("Theme_progressbar")
+value = 100.0
+show_percentage = false
+
+[node name="BottomSpacer" type="Control" parent="SafeArea/MainVBox/BottomLoadingSection"]
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+
+[node name="HomeIndicatorContainer" type="CenterContainer" parent="SafeArea/MainVBox/BottomLoadingSection"]
+layout_mode = 2
+
+[node name="HomeIndicator" type="Panel" parent="SafeArea/MainVBox/BottomLoadingSection/HomeIndicatorContainer"]
+custom_minimum_size = Vector2(220, 6)
+layout_mode = 2
+theme_override_styles/panel = ExtResource("8_home")

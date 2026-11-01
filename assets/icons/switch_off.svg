@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 76 44" width="76" height="44">
+  <defs>
+    <filter id="swShadOff" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="1.5" flood-color="#0F172A" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+  <rect x="2" y="2" width="72" height="40" rx="20" fill="#CBD5E1" stroke="#94A3B8" stroke-width="1.5"/>
+  <circle cx="24" cy="22" r="16" fill="#FFFFFF" filter="url(#swShadOff)"/>
+</svg>

@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" width="80" height="80">
+  <defs>
+    <linearGradient id="avatarBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#60A5FA"/>
+      <stop offset="100%" stop-color="#2563EB"/>
+    </linearGradient>
+    <filter id="avatarShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#1D4ED8" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+  <!-- Circular Blue Base -->
+  <circle cx="40" cy="40" r="37" fill="url(#avatarBg)" stroke="#BFDBFE" stroke-width="3" filter="url(#avatarShadow)"/>
+  
+  <!-- Boy Face & Body -->
+  <!-- Shirt/Collar -->
+  <path d="M 22 70 C 24 58 34 56 40 56 C 46 56 56 58 58 70 Z" fill="#1D4ED8"/>
+  <polygon points="36,56 44,56 40,64" fill="#FFFFFF"/>
+  <!-- Neck -->
+  <rect x="36" y="48" width="8" height="10" rx="3" fill="#FBCFE8"/>
+  <!-- Head -->
+  <ellipse cx="40" cy="40" rx="14" ry="15" fill="#FED7AA"/>
+  <!-- Eyes -->
+  <circle cx="35" cy="39" r="2" fill="#1E293B"/>
+  <circle cx="45" cy="39" r="2" fill="#1E293B"/>
+  <!-- Smile -->
+  <path d="M 37 45 Q 40 48 43 45" fill="none" stroke="#EA580C" stroke-width="1.5" stroke-linecap="round"/>
+  <!-- Cheeks -->
+  <circle cx="32" cy="43" r="2" fill="#FDA4AF" opacity="0.6"/>
+  <circle cx="48" cy="43" r="2" fill="#FDA4AF" opacity="0.6"/>
+  <!-- Blue Cap -->
+  <path d="M 26 34 C 26 24 34 22 40 22 C 46 22 54 24 54 34 Z" fill="#2563EB"/>
+  <path d="M 24 34 Q 40 31 56 34 L 58 37 Q 40 34 22 37 Z" fill="#1D4ED8"/>
+</svg>

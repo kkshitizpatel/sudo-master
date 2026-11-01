@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="gearGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#93C5FD"/>
+      <stop offset="100%" stop-color="#3B82F6"/>
+    </linearGradient>
+    <filter id="gearShad" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="1.5" flood-color="#1E3A8A" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+  <path d="M 32 20 A 12 12 0 1 0 32 44 A 12 12 0 1 0 32 20 M 28 8 L 36 8 L 37 14 C 39 15 41 16 43 18 L 49 15 L 53 22 L 48 26 C 48 28 48 30 48 32 C 48 34 48 36 48 38 L 53 42 L 49 49 L 43 46 C 41 48 39 49 37 50 L 36 56 L 28 56 L 27 50 C 25 49 23 48 21 46 L 15 49 L 11 42 L 16 38 C 16 36 16 34 16 32 C 16 30 16 28 16 26 L 11 22 L 15 15 L 21 18 C 23 16 25 15 27 14 Z" fill="url(#gearGrad)" fill-rule="evenodd" filter="url(#gearShad)"/>
+  <circle cx="32" cy="32" r="7" fill="#EFF6FF"/>
+</svg>

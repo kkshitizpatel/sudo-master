@@ -1,0 +1,581 @@
+[gd_scene load_steps=10 format=3]
+
+[ext_resource type="Script" path="res://scenes/components/NumericKeypad.gd" id="1_keypad"]
+[ext_resource type="StyleBox" path="res://assets/themes/tool_tile_btn.tres" id="2_tool_box"]
+[ext_resource type="StyleBox" path="res://assets/themes/badge_pill_blue.tres" id="3_badge_pill"]
+[ext_resource type="Texture2D" path="res://assets/icons/icon_tool_counts.svg" id="4_ic_counts"]
+[ext_resource type="Texture2D" path="res://assets/icons/icon_tool_undo.svg" id="5_ic_undo"]
+[ext_resource type="Texture2D" path="res://assets/icons/icon_tool_erase.svg" id="6_ic_erase"]
+[ext_resource type="Texture2D" path="res://assets/icons/icon_tool_notes.svg" id="7_ic_notes"]
+[ext_resource type="Texture2D" path="res://assets/icons/icon_tool_hint.svg" id="8_ic_hint"]
+[ext_resource type="StyleBox" path="res://assets/themes/digit_capsule_key.tres" id="9_capsule_box"]
+
+[node name="NumericKeypad" type="Control"]
+custom_minimum_size = Vector2(0, 275)
+layout_mode = 3
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -275.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 3
+script = ExtResource("1_keypad")
+
+[node name="VBox" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 18
+
+[node name="ActionTray" type="HBoxContainer" parent="VBox"]
+layout_mode = 2
+theme_override_constants/separation = 14
+alignment = 1
+
+[node name="BtnCounts" type="Button" parent="VBox/ActionTray"]
+custom_minimum_size = Vector2(96, 116)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_styles/normal = ExtResource("2_tool_box")
+theme_override_styles/hover = ExtResource("2_tool_box")
+theme_override_styles/pressed = ExtResource("2_tool_box")
+
+[node name="VBox" type="VBoxContainer" parent="VBox/ActionTray/BtnCounts"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="Icon" type="TextureRect" parent="VBox/ActionTray/BtnCounts/VBox"]
+custom_minimum_size = Vector2(44, 44)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("4_ic_counts")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="VBox/ActionTray/BtnCounts/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.12, 0.18, 0.3, 1)
+theme_override_font_sizes/font_size = 22
+text = "Counts"
+horizontal_alignment = 1
+
+[node name="Badge" type="Label" parent="VBox/ActionTray/BtnCounts"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -24.0
+offset_top = -8.0
+offset_right = 12.0
+offset_bottom = 24.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = ExtResource("3_badge_pill")
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BtnUndo" type="Button" parent="VBox/ActionTray"]
+custom_minimum_size = Vector2(96, 116)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_styles/normal = ExtResource("2_tool_box")
+theme_override_styles/hover = ExtResource("2_tool_box")
+theme_override_styles/pressed = ExtResource("2_tool_box")
+
+[node name="VBox" type="VBoxContainer" parent="VBox/ActionTray/BtnUndo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="Icon" type="TextureRect" parent="VBox/ActionTray/BtnUndo/VBox"]
+custom_minimum_size = Vector2(44, 44)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("5_ic_undo")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="VBox/ActionTray/BtnUndo/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.12, 0.18, 0.3, 1)
+theme_override_font_sizes/font_size = 22
+text = "Undo"
+horizontal_alignment = 1
+
+[node name="Badge" type="Label" parent="VBox/ActionTray/BtnUndo"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -24.0
+offset_top = -8.0
+offset_right = 12.0
+offset_bottom = 24.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = ExtResource("3_badge_pill")
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BtnErase" type="Button" parent="VBox/ActionTray"]
+custom_minimum_size = Vector2(96, 116)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_styles/normal = ExtResource("2_tool_box")
+theme_override_styles/hover = ExtResource("2_tool_box")
+theme_override_styles/pressed = ExtResource("2_tool_box")
+
+[node name="VBox" type="VBoxContainer" parent="VBox/ActionTray/BtnErase"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="Icon" type="TextureRect" parent="VBox/ActionTray/BtnErase/VBox"]
+custom_minimum_size = Vector2(44, 44)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("6_ic_erase")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="VBox/ActionTray/BtnErase/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.12, 0.18, 0.3, 1)
+theme_override_font_sizes/font_size = 22
+text = "Erase"
+horizontal_alignment = 1
+
+[node name="Badge" type="Label" parent="VBox/ActionTray/BtnErase"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -24.0
+offset_top = -8.0
+offset_right = 12.0
+offset_bottom = 24.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = ExtResource("3_badge_pill")
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BtnNotes" type="Button" parent="VBox/ActionTray"]
+custom_minimum_size = Vector2(96, 116)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_styles/normal = ExtResource("2_tool_box")
+theme_override_styles/hover = ExtResource("2_tool_box")
+theme_override_styles/pressed = ExtResource("2_tool_box")
+
+[node name="VBox" type="VBoxContainer" parent="VBox/ActionTray/BtnNotes"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="Icon" type="TextureRect" parent="VBox/ActionTray/BtnNotes/VBox"]
+custom_minimum_size = Vector2(44, 44)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("7_ic_notes")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="VBox/ActionTray/BtnNotes/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.12, 0.18, 0.3, 1)
+theme_override_font_sizes/font_size = 22
+text = "Notes"
+horizontal_alignment = 1
+
+[node name="Badge" type="Label" parent="VBox/ActionTray/BtnNotes"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -24.0
+offset_top = -8.0
+offset_right = 12.0
+offset_bottom = 24.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = ExtResource("3_badge_pill")
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BtnHint" type="Button" parent="VBox/ActionTray"]
+custom_minimum_size = Vector2(96, 116)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_styles/normal = ExtResource("2_tool_box")
+theme_override_styles/hover = ExtResource("2_tool_box")
+theme_override_styles/pressed = ExtResource("2_tool_box")
+
+[node name="VBox" type="VBoxContainer" parent="VBox/ActionTray/BtnHint"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="Icon" type="TextureRect" parent="VBox/ActionTray/BtnHint/VBox"]
+custom_minimum_size = Vector2(44, 44)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("8_ic_hint")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="VBox/ActionTray/BtnHint/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.12, 0.18, 0.3, 1)
+theme_override_font_sizes/font_size = 22
+text = "Smart Hint"
+horizontal_alignment = 1
+
+[node name="Badge" type="Label" parent="VBox/ActionTray/BtnHint"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -24.0
+offset_top = -8.0
+offset_right = 12.0
+offset_bottom = 24.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = ExtResource("3_badge_pill")
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DigitTray" type="HBoxContainer" parent="VBox"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Btn1" type="Button" parent="VBox/DigitTray"]
+custom_minimum_size = Vector2(46, 126)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_styles/normal = ExtResource("9_capsule_box")
+theme_override_styles/hover = ExtResource("9_capsule_box")
+theme_override_styles/pressed = ExtResource("9_capsule_box")
+
+[node name="VBox" type="VBoxContainer" parent="VBox/DigitTray/Btn1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="DigitLabel" type="Label" parent="VBox/DigitTray/Btn1/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.12, 0.18, 0.3, 1)
+theme_override_font_sizes/font_size = 48
+text = "1"
+horizontal_alignment = 1
+
+[node name="CountLabel" type="Label" parent="VBox/DigitTray/Btn1/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.58, 0.64, 0.72, 1)
+theme_override_font_sizes/font_size = 22
+text = "7"
+horizontal_alignment = 1
+
+[node name="Btn2" type="Button" parent="VBox/DigitTray"]
+custom_minimum_size = Vector2(46, 126)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_styles/normal = ExtResource("9_capsule_box")
+theme_override_styles/hover = ExtResource("9_capsule_box")
+theme_override_styles/pressed = ExtResource("9_capsule_box")
+
+[node name="VBox" type="VBoxContainer" parent="VBox/DigitTray/Btn2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="DigitLabel" type="Label" parent="VBox/DigitTray/Btn2/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.12, 0.18, 0.3, 1)
+theme_override_font_sizes/font_size = 48
+text = "2"
+horizontal_alignment = 1
+
+[node name="CountLabel" type="Label" parent="VBox/DigitTray/Btn2/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.58, 0.64, 0.72, 1)
+theme_override_font_sizes/font_size = 22
+text = "4"
+horizontal_alignment = 1
+
+[node name="Btn3" type="Button" parent="VBox/DigitTray"]
+custom_minimum_size = Vector2(46, 126)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_styles/normal = ExtResource("9_capsule_box")
+theme_override_styles/hover = ExtResource("9_capsule_box")
+theme_override_styles/pressed = ExtResource("9_capsule_box")
+
+[node name="VBox" type="VBoxContainer" parent="VBox/DigitTray/Btn3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="DigitLabel" type="Label" parent="VBox/DigitTray/Btn3/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.12, 0.18, 0.3, 1)
+theme_override_font_sizes/font_size = 48
+text = "3"
+horizontal_alignment = 1
+
+[node name="CountLabel" type="Label" parent="VBox/DigitTray/Btn3/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.58, 0.64, 0.72, 1)
+theme_override_font_sizes/font_size = 22
+text = "6"
+horizontal_alignment = 1
+
+[node name="Btn4" type="Button" parent="VBox/DigitTray"]
+custom_minimum_size = Vector2(46, 126)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_styles/normal = ExtResource("9_capsule_box")
+theme_override_styles/hover = ExtResource("9_capsule_box")
+theme_override_styles/pressed = ExtResource("9_capsule_box")
+
+[node name="VBox" type="VBoxContainer" parent="VBox/DigitTray/Btn4"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="DigitLabel" type="Label" parent="VBox/DigitTray/Btn4/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.12, 0.18, 0.3, 1)
+theme_override_font_sizes/font_size = 48
+text = "4"
+horizontal_alignment = 1
+
+[node name="CountLabel" type="Label" parent="VBox/DigitTray/Btn4/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.58, 0.64, 0.72, 1)
+theme_override_font_sizes/font_size = 22
+text = "7"
+horizontal_alignment = 1
+
+[node name="Btn5" type="Button" parent="VBox/DigitTray"]
+custom_minimum_size = Vector2(46, 126)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_styles/normal = ExtResource("9_capsule_box")
+theme_override_styles/hover = ExtResource("9_capsule_box")
+theme_override_styles/pressed = ExtResource("9_capsule_box")
+
+[node name="VBox" type="VBoxContainer" parent="VBox/DigitTray/Btn5"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="DigitLabel" type="Label" parent="VBox/DigitTray/Btn5/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.12, 0.18, 0.3, 1)
+theme_override_font_sizes/font_size = 48
+text = "5"
+horizontal_alignment = 1
+
+[node name="CountLabel" type="Label" parent="VBox/DigitTray/Btn5/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.58, 0.64, 0.72, 1)
+theme_override_font_sizes/font_size = 22
+text = "3"
+horizontal_alignment = 1
+
+[node name="Btn6" type="Button" parent="VBox/DigitTray"]
+custom_minimum_size = Vector2(46, 126)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_styles/normal = ExtResource("9_capsule_box")
+theme_override_styles/hover = ExtResource("9_capsule_box")
+theme_override_styles/pressed = ExtResource("9_capsule_box")
+
+[node name="VBox" type="VBoxContainer" parent="VBox/DigitTray/Btn6"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="DigitLabel" type="Label" parent="VBox/DigitTray/Btn6/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.12, 0.18, 0.3, 1)
+theme_override_font_sizes/font_size = 48
+text = "6"
+horizontal_alignment = 1
+
+[node name="CountLabel" type="Label" parent="VBox/DigitTray/Btn6/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.58, 0.64, 0.72, 1)
+theme_override_font_sizes/font_size = 22
+text = "5"
+horizontal_alignment = 1
+
+[node name="Btn7" type="Button" parent="VBox/DigitTray"]
+custom_minimum_size = Vector2(46, 126)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_styles/normal = ExtResource("9_capsule_box")
+theme_override_styles/hover = ExtResource("9_capsule_box")
+theme_override_styles/pressed = ExtResource("9_capsule_box")
+
+[node name="VBox" type="VBoxContainer" parent="VBox/DigitTray/Btn7"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="DigitLabel" type="Label" parent="VBox/DigitTray/Btn7/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.12, 0.18, 0.3, 1)
+theme_override_font_sizes/font_size = 48
+text = "7"
+horizontal_alignment = 1
+
+[node name="CountLabel" type="Label" parent="VBox/DigitTray/Btn7/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.58, 0.64, 0.72, 1)
+theme_override_font_sizes/font_size = 22
+text = "4"
+horizontal_alignment = 1
+
+[node name="Btn8" type="Button" parent="VBox/DigitTray"]
+custom_minimum_size = Vector2(46, 126)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_styles/normal = ExtResource("9_capsule_box")
+theme_override_styles/hover = ExtResource("9_capsule_box")
+theme_override_styles/pressed = ExtResource("9_capsule_box")
+
+[node name="VBox" type="VBoxContainer" parent="VBox/DigitTray/Btn8"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="DigitLabel" type="Label" parent="VBox/DigitTray/Btn8/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.12, 0.18, 0.3, 1)
+theme_override_font_sizes/font_size = 48
+text = "8"
+horizontal_alignment = 1
+
+[node name="CountLabel" type="Label" parent="VBox/DigitTray/Btn8/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.58, 0.64, 0.72, 1)
+theme_override_font_sizes/font_size = 22
+text = "3"
+horizontal_alignment = 1
+
+[node name="Btn9" type="Button" parent="VBox/DigitTray"]
+custom_minimum_size = Vector2(46, 126)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_styles/normal = ExtResource("9_capsule_box")
+theme_override_styles/hover = ExtResource("9_capsule_box")
+theme_override_styles/pressed = ExtResource("9_capsule_box")
+
+[node name="VBox" type="VBoxContainer" parent="VBox/DigitTray/Btn9"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="DigitLabel" type="Label" parent="VBox/DigitTray/Btn9/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.12, 0.18, 0.3, 1)
+theme_override_font_sizes/font_size = 48
+text = "9"
+horizontal_alignment = 1
+
+[node name="CountLabel" type="Label" parent="VBox/DigitTray/Btn9/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.58, 0.64, 0.72, 1)
+theme_override_font_sizes/font_size = 22
+text = "4"
+horizontal_alignment = 1

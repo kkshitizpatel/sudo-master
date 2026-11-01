@@ -1,0 +1,398 @@
+[gd_scene load_steps=18 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/ThemePaletteModal.gd" id="1_palette"]
+[ext_resource type="PackedScene" path="res://scenes/components/AuroraBackground.tscn" id="2_aurora"]
+[ext_resource type="StyleBox" path="res://assets/themes/settings_main_card.tres" id="3_card"]
+[ext_resource type="StyleBox" path="res://assets/themes/btn_circle_back.tres" id="4_back_box"]
+[ext_resource type="Texture2D" path="res://assets/icons/arrow_back.svg" id="5_back_icon"]
+[ext_resource type="StyleBox" path="res://assets/themes/theme_row_active.tres" id="6_row_active"]
+[ext_resource type="StyleBox" path="res://assets/themes/theme_row_normal.tres" id="7_row_norm"]
+[ext_resource type="Texture2D" path="res://assets/icons/swatch_icy_blue.svg" id="8_sw_icy"]
+[ext_resource type="Texture2D" path="res://assets/icons/icon_checkmark_navy.svg" id="9_ic_chk"]
+[ext_resource type="Texture2D" path="res://assets/icons/swatch_midnight_dark.svg" id="10_sw_mid"]
+[ext_resource type="Texture2D" path="res://assets/icons/swatch_nature_green.svg" id="11_sw_nat"]
+[ext_resource type="Texture2D" path="res://assets/icons/swatch_sunset_amber.svg" id="12_sw_sun"]
+[ext_resource type="Texture2D" path="res://assets/icons/swatch_candy_pink.svg" id="13_sw_can"]
+[ext_resource type="Texture2D" path="res://assets/icons/icon_moon_dark.svg" id="14_ic_moon"]
+[ext_resource type="Texture2D" path="res://assets/icons/switch_on.svg" id="15_sw_on"]
+[ext_resource type="Texture2D" path="res://assets/icons/switch_off.svg" id="16_sw_off"]
+[ext_resource type="StyleBox" path="res://assets/themes/slider_track_bg.tres" id="17_sl_bg"]
+[ext_resource type="StyleBox" path="res://assets/themes/slider_track_fill.tres" id="18_sl_fill"]
+[ext_resource type="Texture2D" path="res://assets/icons/slider_grabber.svg" id="19_sl_grab"]
+
+[node name="ThemePaletteModal" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_palette")
+
+[node name="AuroraBackground" parent="." instance=ExtResource("2_aurora")]
+layout_mode = 1
+
+[node name="SafeArea" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 36
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 36
+theme_override_constants/margin_bottom = 36
+
+[node name="MainCard" type="PanelContainer" parent="SafeArea"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("3_card")
+
+[node name="ContentVBox" type="VBoxContainer" parent="SafeArea/MainCard"]
+layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="BtnClose" type="Button" parent="SafeArea/MainCard/ContentVBox"]
+custom_minimum_size = Vector2(54, 54)
+layout_mode = 2
+size_flags_horizontal = 0
+focus_mode = 0
+theme_override_styles/normal = ExtResource("4_back_box")
+theme_override_styles/hover = ExtResource("4_back_box")
+theme_override_styles/pressed = ExtResource("4_back_box")
+icon = ExtResource("5_back_icon")
+icon_alignment = 1
+expand_icon = true
+
+[node name="SecColorThemes" type="Label" parent="SafeArea/MainCard/ContentVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.06, 0.1, 0.2, 1)
+theme_override_font_sizes/font_size = 28
+text = "Color Themes"
+
+[node name="ThemesList" type="VBoxContainer" parent="SafeArea/MainCard/ContentVBox"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="RowIcyBlue" type="Button" parent="SafeArea/MainCard/ContentVBox/ThemesList"]
+custom_minimum_size = Vector2(0, 52)
+layout_mode = 2
+focus_mode = 0
+theme_override_styles/normal = ExtResource("6_row_active")
+theme_override_styles/hover = ExtResource("6_row_active")
+theme_override_styles/pressed = ExtResource("6_row_active")
+
+[node name="HBox" type="HBoxContainer" parent="SafeArea/MainCard/ContentVBox/ThemesList/RowIcyBlue"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 14.0
+offset_right = -14.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 12
+
+[node name="Label" type="Label" parent="SafeArea/MainCard/ContentVBox/ThemesList/RowIcyBlue/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.06, 0.1, 0.2, 1)
+theme_override_font_sizes/font_size = 22
+text = "Icy Blue (Current)"
+
+[node name="Swatch" type="TextureRect" parent="SafeArea/MainCard/ContentVBox/ThemesList/RowIcyBlue/HBox"]
+custom_minimum_size = Vector2(34, 34)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("8_sw_icy")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Check" type="TextureRect" parent="SafeArea/MainCard/ContentVBox/ThemesList/RowIcyBlue/HBox"]
+custom_minimum_size = Vector2(22, 22)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("9_ic_chk")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="RowMidnightDark" type="Button" parent="SafeArea/MainCard/ContentVBox/ThemesList"]
+custom_minimum_size = Vector2(0, 52)
+layout_mode = 2
+focus_mode = 0
+theme_override_styles/normal = ExtResource("7_row_norm")
+theme_override_styles/hover = ExtResource("7_row_norm")
+theme_override_styles/pressed = ExtResource("7_row_norm")
+
+[node name="HBox" type="HBoxContainer" parent="SafeArea/MainCard/ContentVBox/ThemesList/RowMidnightDark"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 14.0
+offset_right = -14.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 12
+
+[node name="Label" type="Label" parent="SafeArea/MainCard/ContentVBox/ThemesList/RowMidnightDark/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.06, 0.1, 0.2, 1)
+theme_override_font_sizes/font_size = 22
+text = "Midnight Dark"
+
+[node name="Swatch" type="TextureRect" parent="SafeArea/MainCard/ContentVBox/ThemesList/RowMidnightDark/HBox"]
+custom_minimum_size = Vector2(34, 34)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("10_sw_mid")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Check" type="TextureRect" parent="SafeArea/MainCard/ContentVBox/ThemesList/RowMidnightDark/HBox"]
+visible = false
+custom_minimum_size = Vector2(22, 22)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("9_ic_chk")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="RowNatureGreen" type="Button" parent="SafeArea/MainCard/ContentVBox/ThemesList"]
+custom_minimum_size = Vector2(0, 52)
+layout_mode = 2
+focus_mode = 0
+theme_override_styles/normal = ExtResource("7_row_norm")
+theme_override_styles/hover = ExtResource("7_row_norm")
+theme_override_styles/pressed = ExtResource("7_row_norm")
+
+[node name="HBox" type="HBoxContainer" parent="SafeArea/MainCard/ContentVBox/ThemesList/RowNatureGreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 14.0
+offset_right = -14.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 12
+
+[node name="Label" type="Label" parent="SafeArea/MainCard/ContentVBox/ThemesList/RowNatureGreen/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.06, 0.1, 0.2, 1)
+theme_override_font_sizes/font_size = 22
+text = "Nature Green"
+
+[node name="Swatch" type="TextureRect" parent="SafeArea/MainCard/ContentVBox/ThemesList/RowNatureGreen/HBox"]
+custom_minimum_size = Vector2(34, 34)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("11_sw_nat")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Check" type="TextureRect" parent="SafeArea/MainCard/ContentVBox/ThemesList/RowNatureGreen/HBox"]
+visible = false
+custom_minimum_size = Vector2(22, 22)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("9_ic_chk")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="RowSunsetAmber" type="Button" parent="SafeArea/MainCard/ContentVBox/ThemesList"]
+custom_minimum_size = Vector2(0, 52)
+layout_mode = 2
+focus_mode = 0
+theme_override_styles/normal = ExtResource("7_row_norm")
+theme_override_styles/hover = ExtResource("7_row_norm")
+theme_override_styles/pressed = ExtResource("7_row_norm")
+
+[node name="HBox" type="HBoxContainer" parent="SafeArea/MainCard/ContentVBox/ThemesList/RowSunsetAmber"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 14.0
+offset_right = -14.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 12
+
+[node name="Label" type="Label" parent="SafeArea/MainCard/ContentVBox/ThemesList/RowSunsetAmber/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.06, 0.1, 0.2, 1)
+theme_override_font_sizes/font_size = 22
+text = "Sunset Amber"
+
+[node name="Swatch" type="TextureRect" parent="SafeArea/MainCard/ContentVBox/ThemesList/RowSunsetAmber/HBox"]
+custom_minimum_size = Vector2(34, 34)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("12_sw_sun")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Check" type="TextureRect" parent="SafeArea/MainCard/ContentVBox/ThemesList/RowSunsetAmber/HBox"]
+visible = false
+custom_minimum_size = Vector2(22, 22)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("9_ic_chk")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="RowCandyPink" type="Button" parent="SafeArea/MainCard/ContentVBox/ThemesList"]
+custom_minimum_size = Vector2(0, 52)
+layout_mode = 2
+focus_mode = 0
+theme_override_styles/normal = ExtResource("7_row_norm")
+theme_override_styles/hover = ExtResource("7_row_norm")
+theme_override_styles/pressed = ExtResource("7_row_norm")
+
+[node name="HBox" type="HBoxContainer" parent="SafeArea/MainCard/ContentVBox/ThemesList/RowCandyPink"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 14.0
+offset_right = -14.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 12
+
+[node name="Label" type="Label" parent="SafeArea/MainCard/ContentVBox/ThemesList/RowCandyPink/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.06, 0.1, 0.2, 1)
+theme_override_font_sizes/font_size = 22
+text = "Candy Pink"
+
+[node name="Swatch" type="TextureRect" parent="SafeArea/MainCard/ContentVBox/ThemesList/RowCandyPink/HBox"]
+custom_minimum_size = Vector2(34, 34)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("13_sw_can")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Check" type="TextureRect" parent="SafeArea/MainCard/ContentVBox/ThemesList/RowCandyPink/HBox"]
+visible = false
+custom_minimum_size = Vector2(22, 22)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("9_ic_chk")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="SpacingMid1" type="Control" parent="SafeArea/MainCard/ContentVBox"]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+
+[node name="SecPresetMode" type="Label" parent="SafeArea/MainCard/ContentVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.06, 0.1, 0.2, 1)
+theme_override_font_sizes/font_size = 28
+text = "Preset Mode"
+
+[node name="DarkModeRow" type="HBoxContainer" parent="SafeArea/MainCard/ContentVBox"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Icon" type="TextureRect" parent="SafeArea/MainCard/ContentVBox/DarkModeRow"]
+custom_minimum_size = Vector2(26, 26)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("14_ic_moon")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="SafeArea/MainCard/ContentVBox/DarkModeRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.06, 0.1, 0.2, 1)
+theme_override_font_sizes/font_size = 22
+text = "Dark Mode"
+
+[node name="ToggleDarkMode" type="CheckButton" parent="SafeArea/MainCard/ContentVBox/DarkModeRow"]
+custom_minimum_size = Vector2(76, 44)
+layout_mode = 2
+focus_mode = 0
+theme_override_icons/checked = ExtResource("15_sw_on")
+theme_override_icons/unchecked = ExtResource("16_sw_off")
+flat = true
+
+[node name="SpacingMid2" type="Control" parent="SafeArea/MainCard/ContentVBox"]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+
+[node name="FontHeaderRow" type="HBoxContainer" parent="SafeArea/MainCard/ContentVBox"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="AAIcon" type="Label" parent="SafeArea/MainCard/ContentVBox/FontHeaderRow"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.06, 0.1, 0.2, 1)
+theme_override_font_sizes/font_size = 26
+text = "AA"
+
+[node name="SecFontSize" type="Label" parent="SafeArea/MainCard/ContentVBox/FontHeaderRow"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.06, 0.1, 0.2, 1)
+theme_override_font_sizes/font_size = 28
+text = "Font Size Scale"
+
+[node name="FontSliderRow" type="HBoxContainer" parent="SafeArea/MainCard/ContentVBox"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="SmallA" type="Label" parent="SafeArea/MainCard/ContentVBox/FontSliderRow"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.06, 0.1, 0.2, 1)
+theme_override_font_sizes/font_size = 22
+text = "A"
+vertical_alignment = 1
+
+[node name="HSliderFont" type="HSlider" parent="SafeArea/MainCard/ContentVBox/FontSliderRow"]
+custom_minimum_size = Vector2(180, 36)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+focus_mode = 0
+theme_override_icons/grabber = ExtResource("19_sl_grab")
+theme_override_icons/grabber_highlight = ExtResource("19_sl_grab")
+theme_override_styles/slider = ExtResource("17_sl_bg")
+theme_override_styles/grabber_area = ExtResource("18_sl_fill")
+theme_override_styles/grabber_area_highlight = ExtResource("18_sl_fill")
+min_value = 0.8
+max_value = 1.3
+step = 0.05
+value = 1.0
+
+[node name="LargeA" type="Label" parent="SafeArea/MainCard/ContentVBox/FontSliderRow"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.06, 0.1, 0.2, 1)
+theme_override_font_sizes/font_size = 34
+text = "A"
+vertical_alignment = 1
+
+[node name="FooterSpacer" type="Control" parent="SafeArea/MainCard/ContentVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="FooterLabel" type="Label" parent="SafeArea/MainCard/ContentVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.38, 0.45, 0.55, 1)
+theme_override_font_sizes/font_size = 18
+text = "Tap a theme to apply"
+horizontal_alignment = 1

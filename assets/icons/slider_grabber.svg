@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <defs>
+    <filter id="grShad" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#0284C7" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  <circle cx="16" cy="16" r="13" fill="#FFFFFF" stroke="#BAE6FD" stroke-width="2" filter="url(#grShad)"/>
+  <circle cx="14" cy="13" r="4" fill="#FFFFFF" opacity="0.6"/>
+</svg>

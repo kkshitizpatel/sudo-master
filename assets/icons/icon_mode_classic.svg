@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <filter id="gridShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="3" stdDeviation="2" flood-color="#1D4ED8" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+  <!-- Board Outer Rect -->
+  <rect x="4" y="4" width="56" height="56" rx="10" fill="#FFFFFF" stroke="#93C5FD" stroke-width="2.5" filter="url(#gridShadow)"/>
+  
+  <!-- Grid Lines -->
+  <line x1="22.6" y1="4" x2="22.6" y2="60" stroke="#3B82F6" stroke-width="2"/>
+  <line x1="41.3" y1="4" x2="41.3" y2="60" stroke="#3B82F6" stroke-width="2"/>
+  <line x1="4" y1="22.6" x2="60" y2="22.6" stroke="#3B82F6" stroke-width="2"/>
+  <line x1="4" y1="41.3" x2="60" y2="41.3" stroke="#3B82F6" stroke-width="2"/>
+  
+  <!-- Sample Digits on Cells -->
+  <rect x="5" y="5" width="16" height="16" fill="#DBEAFE" rx="3"/>
+  <text x="13" y="18" font-family="Arial, sans-serif" font-weight="900" font-size="12" fill="#1D4ED8" text-anchor="middle">5</text>
+  
+  <text x="32" y="18" font-family="Arial, sans-serif" font-weight="bold" font-size="11" fill="#3B82F6" text-anchor="middle">3</text>
+  
+  <rect x="23.6" y="23.6" width="16.7" height="16.7" fill="#BFDBFE" rx="2"/>
+  <text x="32" y="36.5" font-family="Arial, sans-serif" font-weight="900" font-size="13" fill="#1D4ED8" text-anchor="middle">9</text>
+  
+  <text x="50.6" y="36.5" font-family="Arial, sans-serif" font-weight="bold" font-size="11" fill="#3B82F6" text-anchor="middle">6</text>
+  <text x="13" y="55" font-family="Arial, sans-serif" font-weight="bold" font-size="11" fill="#3B82F6" text-anchor="middle">8</text>
+  <text x="50.6" y="55" font-family="Arial, sans-serif" font-weight="bold" font-size="11" fill="#1D4ED8" text-anchor="middle">4</text>
+</svg>

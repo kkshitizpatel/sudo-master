@@ -1,0 +1,555 @@
+[gd_scene load_steps=18 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/WelcomeScreen.gd" id="1_welcome"]
+[ext_resource type="PackedScene" path="res://scenes/components/AuroraBackground.tscn" id="2_aurora"]
+[ext_resource type="Texture2D" path="res://assets/icons/cloud_bubble.svg" id="3_cloud"]
+[ext_resource type="StyleBox" path="res://assets/themes/welcome_floating_tile.tres" id="4_tile"]
+[ext_resource type="Texture2D" path="res://assets/icons/star_soft_blue.svg" id="5_star"]
+[ext_resource type="Texture2D" path="res://assets/icons/icon_pencil_3d.svg" id="6_pencil"]
+[ext_resource type="Texture2D" path="res://assets/icons/sparkle_rays_left.svg" id="7_rays_l"]
+[ext_resource type="Texture2D" path="res://assets/icons/sparkle_rays_right.svg" id="8_rays_r"]
+[ext_resource type="StyleBox" path="res://assets/themes/welcome_mini_board.tres" id="9_board"]
+[ext_resource type="Texture2D" path="res://assets/icons/golden_crown_3d.svg" id="10_crown"]
+[ext_resource type="StyleBox" path="res://assets/themes/welcome_dialog_card.tres" id="11_dialog"]
+[ext_resource type="StyleBox" path="res://assets/themes/welcome_terms_pill.tres" id="12_terms"]
+[ext_resource type="Texture2D" path="res://assets/icons/icon_document_terms.svg" id="13_doc"]
+[ext_resource type="StyleBox" path="res://assets/themes/welcome_accept_btn.tres" id="14_btn_n"]
+[ext_resource type="StyleBox" path="res://assets/themes/welcome_accept_btn_pressed.tres" id="15_btn_p"]
+[ext_resource type="Texture2D" path="res://assets/icons/icon_checkmark_white.svg" id="16_check"]
+[ext_resource type="Theme" path="res://assets/themes/default_glass_theme.tres" id="17_theme"]
+
+[node name="WelcomeScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("17_theme")
+script = ExtResource("1_welcome")
+
+[node name="AuroraBackground" parent="." instance=ExtResource("2_aurora")]
+layout_mode = 1
+
+[node name="CloudsLayer" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="CloudTopLeft" type="TextureRect" parent="CloudsLayer"]
+layout_mode = 0
+offset_left = -40.0
+offset_top = -30.0
+offset_right = 320.0
+offset_bottom = 170.0
+texture = ExtResource("3_cloud")
+expand_mode = 1
+stretch_mode = 5
+modulate = Color(1, 1, 1, 0.75)
+
+[node name="CloudTopRight" type="TextureRect" parent="CloudsLayer"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -320.0
+offset_top = -30.0
+offset_right = 40.0
+offset_bottom = 170.0
+grow_horizontal = 0
+texture = ExtResource("3_cloud")
+expand_mode = 1
+stretch_mode = 5
+flip_h = true
+modulate = Color(1, 1, 1, 0.75)
+
+[node name="CloudBottomLeft" type="TextureRect" parent="CloudsLayer"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -50.0
+offset_top = -220.0
+offset_right = 330.0
+offset_bottom = -10.0
+grow_vertical = 0
+texture = ExtResource("3_cloud")
+expand_mode = 1
+stretch_mode = 5
+modulate = Color(1, 1, 1, 0.8)
+
+[node name="CloudBottomRight" type="TextureRect" parent="CloudsLayer"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -340.0
+offset_top = -220.0
+offset_right = 50.0
+offset_bottom = -10.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("3_cloud")
+expand_mode = 1
+stretch_mode = 5
+flip_h = true
+modulate = Color(1, 1, 1, 0.8)
+
+[node name="FloatingDecorations" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Tile5" type="PanelContainer" parent="FloatingDecorations"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 210.0
+offset_right = 178.0
+offset_bottom = 340.0
+rotation = -0.14
+theme_override_styles/panel = ExtResource("4_tile")
+
+[node name="Label" type="Label" parent="FloatingDecorations/Tile5"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.376, 0.647, 0.980, 1)
+theme_override_font_sizes/font_size = 54
+text = "5"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StarTopLeft" type="TextureRect" parent="FloatingDecorations"]
+layout_mode = 0
+offset_left = 68.0
+offset_top = 400.0
+offset_right = 120.0
+offset_bottom = 452.0
+texture = ExtResource("5_star")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Tile3" type="PanelContainer" parent="FloatingDecorations"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -178.0
+offset_top = 210.0
+offset_right = -48.0
+offset_bottom = 340.0
+grow_horizontal = 0
+rotation = 0.14
+theme_override_styles/panel = ExtResource("4_tile")
+
+[node name="Label" type="Label" parent="FloatingDecorations/Tile3"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.376, 0.647, 0.980, 1)
+theme_override_font_sizes/font_size = 54
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StarTopRight" type="TextureRect" parent="FloatingDecorations"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -124.0
+offset_top = 440.0
+offset_right = -76.0
+offset_bottom = 488.0
+grow_horizontal = 0
+texture = ExtResource("5_star")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Tile8" type="PanelContainer" parent="FloatingDecorations"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = -300.0
+offset_right = 170.0
+offset_bottom = -170.0
+grow_vertical = 0
+rotation = -0.1
+theme_override_styles/panel = ExtResource("4_tile")
+
+[node name="Label" type="Label" parent="FloatingDecorations/Tile8"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.376, 0.647, 0.980, 1)
+theme_override_font_sizes/font_size = 54
+text = "8"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StarBottomLeft" type="TextureRect" parent="FloatingDecorations"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 180.0
+offset_top = -260.0
+offset_right = 228.0
+offset_bottom = -212.0
+grow_vertical = 0
+texture = ExtResource("5_star")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Tile7" type="PanelContainer" parent="FloatingDecorations"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -170.0
+offset_top = -300.0
+offset_right = -40.0
+offset_bottom = -170.0
+grow_horizontal = 0
+grow_vertical = 0
+rotation = 0.12
+theme_override_styles/panel = ExtResource("4_tile")
+
+[node name="Label" type="Label" parent="FloatingDecorations/Tile7"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.376, 0.647, 0.980, 1)
+theme_override_font_sizes/font_size = 54
+text = "7"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PencilCenter" type="TextureRect" parent="FloatingDecorations"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -75.0
+offset_top = -240.0
+offset_right = 75.0
+offset_bottom = -90.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("6_pencil")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="StarBottomCenter" type="TextureRect" parent="FloatingDecorations"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 90.0
+offset_top = -140.0
+offset_right = 136.0
+offset_bottom = -94.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("5_star")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="SafeArea" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 56
+theme_override_constants/margin_top = 60
+theme_override_constants/margin_right = 56
+theme_override_constants/margin_bottom = 50
+
+[node name="MainVBox" type="VBoxContainer" parent="SafeArea"]
+layout_mode = 2
+alignment = 1
+
+[node name="TopSpacer" type="Control" parent="SafeArea/MainVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.35
+
+[node name="HeroBadgeArea" type="CenterContainer" parent="SafeArea/MainVBox"]
+layout_mode = 2
+
+[node name="BadgeWrapper" type="Control" parent="SafeArea/MainVBox/HeroBadgeArea"]
+custom_minimum_size = Vector2(360, 360)
+layout_mode = 2
+
+[node name="RaysLeft" type="TextureRect" parent="SafeArea/MainVBox/HeroBadgeArea/BadgeWrapper"]
+layout_mode = 0
+offset_left = -20.0
+offset_top = 130.0
+offset_right = 44.0
+offset_bottom = 194.0
+texture = ExtResource("7_rays_l")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="RaysRight" type="TextureRect" parent="SafeArea/MainVBox/HeroBadgeArea/BadgeWrapper"]
+layout_mode = 0
+offset_left = 316.0
+offset_top = 130.0
+offset_right = 380.0
+offset_bottom = 194.0
+texture = ExtResource("8_rays_r")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="MiniBoardPanel" type="PanelContainer" parent="SafeArea/MainVBox/HeroBadgeArea/BadgeWrapper"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 40.0
+offset_right = 320.0
+offset_bottom = 320.0
+theme_override_styles/panel = ExtResource("9_board")
+
+[node name="Grid" type="GridContainer" parent="SafeArea/MainVBox/HeroBadgeArea/BadgeWrapper/MiniBoardPanel"]
+layout_mode = 2
+theme_override_constants/h_separation = 14
+theme_override_constants/v_separation = 14
+columns = 3
+
+[node name="L1" type="Label" parent="SafeArea/MainVBox/HeroBadgeArea/BadgeWrapper/MiniBoardPanel/Grid"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.145, 0.388, 0.922, 1)
+theme_override_font_sizes/font_size = 46
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="L2" type="Label" parent="SafeArea/MainVBox/HeroBadgeArea/BadgeWrapper/MiniBoardPanel/Grid"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.145, 0.388, 0.922, 1)
+theme_override_font_sizes/font_size = 46
+text = "2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="L3" type="Label" parent="SafeArea/MainVBox/HeroBadgeArea/BadgeWrapper/MiniBoardPanel/Grid"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.145, 0.388, 0.922, 1)
+theme_override_font_sizes/font_size = 46
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="L4" type="Label" parent="SafeArea/MainVBox/HeroBadgeArea/BadgeWrapper/MiniBoardPanel/Grid"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.145, 0.388, 0.922, 1)
+theme_override_font_sizes/font_size = 46
+text = "4"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="L5" type="Label" parent="SafeArea/MainVBox/HeroBadgeArea/BadgeWrapper/MiniBoardPanel/Grid"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.145, 0.388, 0.922, 1)
+theme_override_font_sizes/font_size = 46
+text = "5"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="L6" type="Label" parent="SafeArea/MainVBox/HeroBadgeArea/BadgeWrapper/MiniBoardPanel/Grid"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.145, 0.388, 0.922, 1)
+theme_override_font_sizes/font_size = 46
+text = "6"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="L7" type="Label" parent="SafeArea/MainVBox/HeroBadgeArea/BadgeWrapper/MiniBoardPanel/Grid"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.145, 0.388, 0.922, 1)
+theme_override_font_sizes/font_size = 46
+text = "7"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="L8" type="Label" parent="SafeArea/MainVBox/HeroBadgeArea/BadgeWrapper/MiniBoardPanel/Grid"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.145, 0.388, 0.922, 1)
+theme_override_font_sizes/font_size = 46
+text = "8"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="L9" type="Label" parent="SafeArea/MainVBox/HeroBadgeArea/BadgeWrapper/MiniBoardPanel/Grid"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.145, 0.388, 0.922, 1)
+theme_override_font_sizes/font_size = 46
+text = "9"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GoldenCrown" type="TextureRect" parent="SafeArea/MainVBox/HeroBadgeArea/BadgeWrapper"]
+layout_mode = 0
+offset_left = 236.0
+offset_top = 8.0
+offset_right = 346.0
+offset_bottom = 118.0
+rotation = 0.22
+texture = ExtResource("10_crown")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Spacing1" type="Control" parent="SafeArea/MainVBox"]
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+
+[node name="TitleSection" type="VBoxContainer" parent="SafeArea/MainVBox"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="WelcomeLabel" type="Label" parent="SafeArea/MainVBox/TitleSection"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.12, 0.18, 0.3, 1)
+theme_override_font_sizes/font_size = 46
+text = "Welcome to"
+horizontal_alignment = 1
+
+[node name="SudokuMasterLabel" type="Label" parent="SafeArea/MainVBox/TitleSection"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.18, 0.52, 0.95, 1)
+theme_override_colors/font_shadow_color = Color(0.1, 0.35, 0.8, 0.3)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 6
+theme_override_font_sizes/font_size = 72
+text = "Sudoku Master"
+horizontal_alignment = 1
+
+[node name="DividerHBox" type="HBoxContainer" parent="SafeArea/MainVBox/TitleSection"]
+layout_mode = 2
+alignment = 1
+
+[node name="LeftBar" type="ColorRect" parent="SafeArea/MainVBox/TitleSection/DividerHBox"]
+custom_minimum_size = Vector2(160, 3)
+layout_mode = 2
+size_flags_vertical = 4
+color = Color(0.75, 0.86, 0.98, 0.9)
+
+[node name="CenterStar" type="TextureRect" parent="SafeArea/MainVBox/TitleSection/DividerHBox"]
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+texture = ExtResource("5_star")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="RightBar" type="ColorRect" parent="SafeArea/MainVBox/TitleSection/DividerHBox"]
+custom_minimum_size = Vector2(160, 3)
+layout_mode = 2
+size_flags_vertical = 4
+color = Color(0.75, 0.86, 0.98, 0.9)
+
+[node name="Spacing2" type="Control" parent="SafeArea/MainVBox"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+
+[node name="DialogCard" type="PanelContainer" parent="SafeArea/MainVBox"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("11_dialog")
+
+[node name="DialogVBox" type="VBoxContainer" parent="SafeArea/MainVBox/DialogCard"]
+layout_mode = 2
+theme_override_constants/separation = 28
+
+[node name="TermsCard" type="PanelContainer" parent="SafeArea/MainVBox/DialogCard/DialogVBox"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("12_terms")
+
+[node name="TermsHBox" type="HBoxContainer" parent="SafeArea/MainVBox/DialogCard/DialogVBox/TermsCard"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="DocIcon" type="TextureRect" parent="SafeArea/MainVBox/DialogCard/DialogVBox/TermsCard/TermsHBox"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("13_doc")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TermsTextLabel" type="Label" parent="SafeArea/MainVBox/DialogCard/DialogVBox/TermsCard/TermsHBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.12, 0.18, 0.3, 1)
+theme_override_font_sizes/font_size = 28
+text = "By continuing, you agree to
+our Term & Condition"
+vertical_alignment = 1
+
+[node name="BtnAccept" type="Button" parent="SafeArea/MainVBox/DialogCard/DialogVBox"]
+custom_minimum_size = Vector2(0, 96)
+layout_mode = 2
+focus_mode = 0
+theme_override_styles/normal = ExtResource("14_btn_n")
+theme_override_styles/hover = ExtResource("14_btn_n")
+theme_override_styles/pressed = ExtResource("15_btn_p")
+flat = false
+
+[node name="BtnContentHBox" type="HBoxContainer" parent="SafeArea/MainVBox/DialogCard/DialogVBox/BtnAccept"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="CheckIcon" type="TextureRect" parent="SafeArea/MainVBox/DialogCard/DialogVBox/BtnAccept/BtnContentHBox"]
+custom_minimum_size = Vector2(44, 44)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+texture = ExtResource("16_check")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="AcceptLabel" type="Label" parent="SafeArea/MainVBox/DialogCard/DialogVBox/BtnAccept/BtnContentHBox"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 40
+text = "Accept"
+vertical_alignment = 1
+
+[node name="BottomSpacer" type="Control" parent="SafeArea/MainVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5

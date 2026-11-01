@@ -1,0 +1,453 @@
+[gd_scene load_steps=22 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/SettingsScreen.gd" id="1_settings"]
+[ext_resource type="PackedScene" path="res://scenes/components/AuroraBackground.tscn" id="2_aurora"]
+[ext_resource type="StyleBox" path="res://assets/themes/settings_main_card.tres" id="3_card"]
+[ext_resource type="StyleBox" path="res://assets/themes/btn_circle_back.tres" id="4_back_box"]
+[ext_resource type="Texture2D" path="res://assets/icons/arrow_back.svg" id="5_back_icon"]
+[ext_resource type="Texture2D" path="res://assets/icons/icon_music_note.svg" id="6_ic_music"]
+[ext_resource type="StyleBox" path="res://assets/themes/slider_track_bg.tres" id="7_sl_bg"]
+[ext_resource type="StyleBox" path="res://assets/themes/slider_track_fill.tres" id="8_sl_fill"]
+[ext_resource type="Texture2D" path="res://assets/icons/slider_grabber.svg" id="9_sl_grab"]
+[ext_resource type="Texture2D" path="res://assets/icons/icon_speaker_sfx.svg" id="10_ic_sfx"]
+[ext_resource type="Texture2D" path="res://assets/icons/icon_vibrate_phone.svg" id="11_ic_vibrate"]
+[ext_resource type="Texture2D" path="res://assets/icons/switch_on.svg" id="12_sw_on"]
+[ext_resource type="Texture2D" path="res://assets/icons/switch_off.svg" id="13_sw_off"]
+[ext_resource type="Texture2D" path="res://assets/icons/icon_pencil_eraser_setting.svg" id="14_ic_pencil"]
+[ext_resource type="Texture2D" path="res://assets/icons/icon_timer_clock.svg" id="15_ic_clock"]
+[ext_resource type="Texture2D" path="res://assets/icons/icon_cloud_outline.svg" id="16_ic_cloud"]
+[ext_resource type="StyleBox" path="res://assets/themes/btn_sync_pill.tres" id="17_sync_pill"]
+[ext_resource type="Texture2D" path="res://assets/icons/icon_sync_refresh.svg" id="18_ic_sync"]
+[ext_resource type="Texture2D" path="res://assets/icons/icon_info_circle.svg" id="19_ic_info"]
+[ext_resource type="Texture2D" path="res://assets/icons/icon_chevron_right.svg" id="20_ic_chevron"]
+[ext_resource type="Texture2D" path="res://assets/icons/icon_document_sheet.svg" id="21_ic_doc"]
+[ext_resource type="StyleBox" path="res://assets/themes/welcome_dialog_card.tres" id="22_modal_card"]
+[ext_resource type="StyleBox" path="res://assets/themes/welcome_accept_btn.tres" id="23_btn_blue"]
+
+[node name="SettingsScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_settings")
+
+[node name="AuroraBackground" parent="." instance=ExtResource("2_aurora")]
+layout_mode = 1
+
+[node name="SafeArea" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 36
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 36
+theme_override_constants/margin_bottom = 36
+
+[node name="MainCard" type="PanelContainer" parent="SafeArea"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("3_card")
+
+[node name="ContentVBox" type="VBoxContainer" parent="SafeArea/MainCard"]
+layout_mode = 2
+theme_override_constants/separation = 22
+
+[node name="HeaderRow" type="HBoxContainer" parent="SafeArea/MainCard/ContentVBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="BtnBack" type="Button" parent="SafeArea/MainCard/ContentVBox/HeaderRow"]
+custom_minimum_size = Vector2(54, 54)
+layout_mode = 2
+focus_mode = 0
+theme_override_styles/normal = ExtResource("4_back_box")
+theme_override_styles/hover = ExtResource("4_back_box")
+theme_override_styles/pressed = ExtResource("4_back_box")
+icon = ExtResource("5_back_icon")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Title" type="Label" parent="SafeArea/MainCard/ContentVBox/HeaderRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.06, 0.1, 0.2, 1)
+theme_override_font_sizes/font_size = 52
+text = "Settings"
+horizontal_alignment = 1
+
+[node name="RightDummy" type="Control" parent="SafeArea/MainCard/ContentVBox/HeaderRow"]
+custom_minimum_size = Vector2(54, 54)
+layout_mode = 2
+
+[node name="Spacing1" type="Control" parent="SafeArea/MainCard/ContentVBox"]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+
+[node name="SecAudio" type="Label" parent="SafeArea/MainCard/ContentVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.12, 0.18, 0.3, 1)
+theme_override_font_sizes/font_size = 24
+text = "Sound & Audio"
+
+[node name="MusicRow" type="HBoxContainer" parent="SafeArea/MainCard/ContentVBox"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Icon" type="TextureRect" parent="SafeArea/MainCard/ContentVBox/MusicRow"]
+custom_minimum_size = Vector2(26, 26)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("6_ic_music")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="SafeArea/MainCard/ContentVBox/MusicRow"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.12, 0.18, 0.3, 1)
+theme_override_font_sizes/font_size = 22
+text = "Music"
+
+[node name="HSliderMusic" type="HSlider" parent="SafeArea/MainCard/ContentVBox/MusicRow"]
+custom_minimum_size = Vector2(180, 36)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+focus_mode = 0
+theme_override_icons/grabber = ExtResource("9_sl_grab")
+theme_override_icons/grabber_highlight = ExtResource("9_sl_grab")
+theme_override_styles/slider = ExtResource("7_sl_bg")
+theme_override_styles/grabber_area = ExtResource("8_sl_fill")
+theme_override_styles/grabber_area_highlight = ExtResource("8_sl_fill")
+max_value = 1.0
+step = 0.05
+value = 0.7
+
+[node name="SFXRow" type="HBoxContainer" parent="SafeArea/MainCard/ContentVBox"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Icon" type="TextureRect" parent="SafeArea/MainCard/ContentVBox/SFXRow"]
+custom_minimum_size = Vector2(26, 26)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("10_ic_sfx")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="SafeArea/MainCard/ContentVBox/SFXRow"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.12, 0.18, 0.3, 1)
+theme_override_font_sizes/font_size = 22
+text = "SFX"
+
+[node name="HSliderSFX" type="HSlider" parent="SafeArea/MainCard/ContentVBox/SFXRow"]
+custom_minimum_size = Vector2(180, 36)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+focus_mode = 0
+theme_override_icons/grabber = ExtResource("9_sl_grab")
+theme_override_icons/grabber_highlight = ExtResource("9_sl_grab")
+theme_override_styles/slider = ExtResource("7_sl_bg")
+theme_override_styles/grabber_area = ExtResource("8_sl_fill")
+theme_override_styles/grabber_area_highlight = ExtResource("8_sl_fill")
+max_value = 1.0
+step = 0.05
+value = 1.0
+
+[node name="Spacing2" type="Control" parent="SafeArea/MainCard/ContentVBox"]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+
+[node name="SecControls" type="Label" parent="SafeArea/MainCard/ContentVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.12, 0.18, 0.3, 1)
+theme_override_font_sizes/font_size = 24
+text = "Game Controls"
+
+[node name="HapticRow" type="HBoxContainer" parent="SafeArea/MainCard/ContentVBox"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Icon" type="TextureRect" parent="SafeArea/MainCard/ContentVBox/HapticRow"]
+custom_minimum_size = Vector2(26, 26)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("11_ic_vibrate")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="SafeArea/MainCard/ContentVBox/HapticRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.12, 0.18, 0.3, 1)
+theme_override_font_sizes/font_size = 22
+text = "Haptic Feedback"
+
+[node name="ToggleHaptics" type="CheckButton" parent="SafeArea/MainCard/ContentVBox/HapticRow"]
+custom_minimum_size = Vector2(76, 44)
+layout_mode = 2
+focus_mode = 0
+theme_override_icons/checked = ExtResource("12_sw_on")
+theme_override_icons/unchecked = ExtResource("13_sw_off")
+button_pressed = true
+flat = true
+
+[node name="AutoNotesRow" type="HBoxContainer" parent="SafeArea/MainCard/ContentVBox"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Icon" type="TextureRect" parent="SafeArea/MainCard/ContentVBox/AutoNotesRow"]
+custom_minimum_size = Vector2(26, 26)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("14_ic_pencil")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="SafeArea/MainCard/ContentVBox/AutoNotesRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.12, 0.18, 0.3, 1)
+theme_override_font_sizes/font_size = 22
+text = "Auto-Erase Notes"
+
+[node name="ToggleAutoNotes" type="CheckButton" parent="SafeArea/MainCard/ContentVBox/AutoNotesRow"]
+custom_minimum_size = Vector2(76, 44)
+layout_mode = 2
+focus_mode = 0
+theme_override_icons/checked = ExtResource("12_sw_on")
+theme_override_icons/unchecked = ExtResource("13_sw_off")
+button_pressed = true
+flat = true
+
+[node name="TimerRow" type="HBoxContainer" parent="SafeArea/MainCard/ContentVBox"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Icon" type="TextureRect" parent="SafeArea/MainCard/ContentVBox/TimerRow"]
+custom_minimum_size = Vector2(26, 26)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("15_ic_clock")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="SafeArea/MainCard/ContentVBox/TimerRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.12, 0.18, 0.3, 1)
+theme_override_font_sizes/font_size = 22
+text = "Show Timer"
+
+[node name="ToggleTimer" type="CheckButton" parent="SafeArea/MainCard/ContentVBox/TimerRow"]
+custom_minimum_size = Vector2(76, 44)
+layout_mode = 2
+focus_mode = 0
+theme_override_icons/checked = ExtResource("12_sw_on")
+theme_override_icons/unchecked = ExtResource("13_sw_off")
+button_pressed = true
+flat = true
+
+[node name="Spacing3" type="Control" parent="SafeArea/MainCard/ContentVBox"]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+
+[node name="SecAccounts" type="Label" parent="SafeArea/MainCard/ContentVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.12, 0.18, 0.3, 1)
+theme_override_font_sizes/font_size = 24
+text = "Accounts & Progress"
+
+[node name="CloudSaveRow" type="HBoxContainer" parent="SafeArea/MainCard/ContentVBox"]
+custom_minimum_size = Vector2(0, 52)
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Icon" type="TextureRect" parent="SafeArea/MainCard/ContentVBox/CloudSaveRow"]
+custom_minimum_size = Vector2(26, 26)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("16_ic_cloud")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="SafeArea/MainCard/ContentVBox/CloudSaveRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.12, 0.18, 0.3, 1)
+theme_override_font_sizes/font_size = 22
+text = "Cloud Save"
+
+[node name="BtnGoogleSync" type="Button" parent="SafeArea/MainCard/ContentVBox/CloudSaveRow"]
+custom_minimum_size = Vector2(170, 44)
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(0.12, 0.18, 0.3, 1)
+theme_override_font_sizes/font_size = 17
+theme_override_styles/normal = ExtResource("17_sync_pill")
+theme_override_styles/hover = ExtResource("17_sync_pill")
+theme_override_styles/pressed = ExtResource("17_sync_pill")
+text = " Google Play Sync"
+icon = ExtResource("18_ic_sync")
+icon_alignment = 0
+expand_icon = true
+
+[node name="BtnHowToPlay" type="Button" parent="SafeArea/MainCard/ContentVBox"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+focus_mode = 0
+flat = true
+
+[node name="HBox" type="HBoxContainer" parent="SafeArea/MainCard/ContentVBox/BtnHowToPlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme_override_constants/separation = 16
+
+[node name="Icon" type="TextureRect" parent="SafeArea/MainCard/ContentVBox/BtnHowToPlay/HBox"]
+custom_minimum_size = Vector2(26, 26)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("19_ic_info")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="SafeArea/MainCard/ContentVBox/BtnHowToPlay/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.12, 0.18, 0.3, 1)
+theme_override_font_sizes/font_size = 22
+text = "How to Play"
+
+[node name="Arrow" type="TextureRect" parent="SafeArea/MainCard/ContentVBox/BtnHowToPlay/HBox"]
+modulate = Color(0.12, 0.18, 0.3, 1)
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("20_ic_chevron")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="BtnPrivacyPolicy" type="Button" parent="SafeArea/MainCard/ContentVBox"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+focus_mode = 0
+flat = true
+
+[node name="HBox" type="HBoxContainer" parent="SafeArea/MainCard/ContentVBox/BtnPrivacyPolicy"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme_override_constants/separation = 16
+
+[node name="Icon" type="TextureRect" parent="SafeArea/MainCard/ContentVBox/BtnPrivacyPolicy/HBox"]
+custom_minimum_size = Vector2(26, 26)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("21_ic_doc")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="SafeArea/MainCard/ContentVBox/BtnPrivacyPolicy/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.12, 0.18, 0.3, 1)
+theme_override_font_sizes/font_size = 22
+text = "Privacy Policy"
+
+[node name="Arrow" type="TextureRect" parent="SafeArea/MainCard/ContentVBox/BtnPrivacyPolicy/HBox"]
+modulate = Color(0.12, 0.18, 0.3, 1)
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("20_ic_chevron")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="FooterSpacer" type="Control" parent="SafeArea/MainCard/ContentVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VersionLabel" type="Label" parent="SafeArea/MainCard/ContentVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.58, 0.64, 0.72, 1)
+theme_override_font_sizes/font_size = 18
+text = "Version 1.04"
+horizontal_alignment = 1
+
+[node name="InfoModal" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Dimmer" type="ColorRect" parent="InfoModal"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.05, 0.1, 0.2, 0.5)
+
+[node name="CenterContainer" type="CenterContainer" parent="InfoModal"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ModalPanel" type="PanelContainer" parent="InfoModal/CenterContainer"]
+custom_minimum_size = Vector2(520, 420)
+layout_mode = 2
+theme_override_styles/panel = ExtResource("22_modal_card")
+
+[node name="VBox" type="VBoxContainer" parent="InfoModal/CenterContainer/ModalPanel"]
+layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="Title" type="Label" parent="InfoModal/CenterContainer/ModalPanel/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.01, 0.52, 0.78, 1)
+theme_override_font_sizes/font_size = 32
+text = "How to Play"
+horizontal_alignment = 1
+
+[node name="Body" type="Label" parent="InfoModal/CenterContainer/ModalPanel/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.2, 0.26, 0.35, 1)
+theme_override_font_sizes/font_size = 20
+text = "Fill the 9x9 grid so each row, column, and 3x3 box contains digits 1 to 9 without repeats.
+
+Use candidate notes and smart hints when stuck!"
+autowrap_mode = 2
+
+[node name="BtnCloseInfo" type="Button" parent="InfoModal/CenterContainer/ModalPanel/VBox"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = ExtResource("23_btn_blue")
+text = "Got It!"

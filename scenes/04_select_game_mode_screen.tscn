@@ -1,0 +1,543 @@
+[gd_scene load_steps=22 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/SelectModeScreen.gd" id="1_modes"]
+[ext_resource type="PackedScene" path="res://scenes/components/AuroraBackground.tscn" id="2_aurora"]
+[ext_resource type="StyleBox" path="res://assets/themes/btn_circle_back.tres" id="3_back_btn"]
+[ext_resource type="Texture2D" path="res://assets/icons/arrow_back.svg" id="4_back_icon"]
+[ext_resource type="Texture2D" path="res://assets/icons/golden_crown_3d.svg" id="5_crown"]
+[ext_resource type="StyleBox" path="res://assets/themes/header_stat_pill.tres" id="6_stat_pill"]
+[ext_resource type="Texture2D" path="res://assets/icons/avatar_boy_3d.svg" id="7_avatar"]
+[ext_resource type="Texture2D" path="res://assets/icons/icon_star_gold.svg" id="8_star_gold"]
+[ext_resource type="Texture2D" path="res://assets/icons/coin_icon.svg" id="9_coin"]
+[ext_resource type="StyleBox" path="res://assets/themes/claim_outer_card.tres" id="10_outer_card"]
+[ext_resource type="StyleBox" path="res://assets/themes/mode_pill_classic.tres" id="11_m_classic"]
+[ext_resource type="StyleBox" path="res://assets/themes/mode_pill_campaign.tres" id="12_m_campaign"]
+[ext_resource type="StyleBox" path="res://assets/themes/mode_pill_battle.tres" id="13_m_battle"]
+[ext_resource type="StyleBox" path="res://assets/themes/mode_pill_daily.tres" id="14_m_daily"]
+[ext_resource type="Texture2D" path="res://assets/icons/icon_mode_classic.svg" id="15_ic_classic"]
+[ext_resource type="Texture2D" path="res://assets/icons/icon_mode_campaign.svg" id="16_ic_campaign"]
+[ext_resource type="Texture2D" path="res://assets/icons/icon_lock_teal.svg" id="17_ic_lock"]
+[ext_resource type="Texture2D" path="res://assets/icons/icon_mode_battle.svg" id="18_ic_battle"]
+[ext_resource type="Texture2D" path="res://assets/icons/icon_badge_vs.svg" id="19_ic_vs"]
+[ext_resource type="Texture2D" path="res://assets/icons/icon_mode_daily.svg" id="20_ic_daily"]
+[ext_resource type="Texture2D" path="res://assets/icons/icon_flame_fire.svg" id="21_ic_flame"]
+[ext_resource type="Texture2D" path="res://assets/icons/icon_chevron_right.svg" id="22_ic_chevron"]
+[ext_resource type="StyleBox" path="res://assets/themes/welcome_floating_tile.tres" id="23_tile"]
+[ext_resource type="Texture2D" path="res://assets/icons/icon_pencil_3d.svg" id="24_pencil"]
+[ext_resource type="Texture2D" path="res://assets/icons/star_soft_blue.svg" id="25_star_blue"]
+[ext_resource type="StyleBox" path="res://assets/themes/welcome_dialog_card.tres" id="26_modal_card"]
+[ext_resource type="StyleBox" path="res://assets/themes/welcome_accept_btn.tres" id="27_btn_blue"]
+
+[node name="SelectModeScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_modes")
+
+[node name="AuroraBackground" parent="." instance=ExtResource("2_aurora")]
+layout_mode = 1
+
+[node name="FloatingBackground" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Tile8" type="PanelContainer" parent="FloatingBackground"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = -240.0
+offset_right = 170.0
+offset_bottom = -110.0
+grow_vertical = 0
+rotation = -0.1
+theme_override_styles/panel = ExtResource("23_tile")
+
+[node name="Label" type="Label" parent="FloatingBackground/Tile8"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.376, 0.647, 0.980, 1)
+theme_override_font_sizes/font_size = 54
+text = "8"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StarBottomLeft" type="TextureRect" parent="FloatingBackground"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 180.0
+offset_top = -210.0
+offset_right = 228.0
+offset_bottom = -162.0
+grow_vertical = 0
+texture = ExtResource("25_star_blue")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Tile7" type="PanelContainer" parent="FloatingBackground"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -170.0
+offset_top = -240.0
+offset_right = -40.0
+offset_bottom = -110.0
+grow_horizontal = 0
+grow_vertical = 0
+rotation = 0.12
+theme_override_styles/panel = ExtResource("23_tile")
+
+[node name="Label" type="Label" parent="FloatingBackground/Tile7"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.376, 0.647, 0.980, 1)
+theme_override_font_sizes/font_size = 54
+text = "7"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StarBottomRight" type="TextureRect" parent="FloatingBackground"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -195.0
+offset_top = -140.0
+offset_right = -153.0
+offset_bottom = -98.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("25_star_blue")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="PencilCenter" type="TextureRect" parent="FloatingBackground"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -75.0
+offset_top = -210.0
+offset_right = 75.0
+offset_bottom = -60.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("24_pencil")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="SafeArea" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 48
+theme_override_constants/margin_top = 48
+theme_override_constants/margin_right = 48
+theme_override_constants/margin_bottom = 44
+
+[node name="MainVBox" type="VBoxContainer" parent="SafeArea"]
+layout_mode = 2
+theme_override_constants/separation = 22
+
+[node name="TopHeaderRow" type="HBoxContainer" parent="SafeArea/MainVBox"]
+layout_mode = 2
+
+[node name="LeftCol" type="VBoxContainer" parent="SafeArea/MainVBox/TopHeaderRow"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="BtnBack" type="Button" parent="SafeArea/MainVBox/TopHeaderRow/LeftCol"]
+custom_minimum_size = Vector2(56, 56)
+layout_mode = 2
+size_flags_horizontal = 0
+focus_mode = 0
+theme_override_styles/normal = ExtResource("3_back_btn")
+theme_override_styles/hover = ExtResource("3_back_btn")
+theme_override_styles/pressed = ExtResource("3_back_btn")
+icon = ExtResource("4_back_icon")
+icon_alignment = 1
+expand_icon = true
+
+[node name="TitleBox" type="Control" parent="SafeArea/MainVBox/TopHeaderRow/LeftCol"]
+custom_minimum_size = Vector2(280, 130)
+layout_mode = 2
+
+[node name="CrownIcon" type="TextureRect" parent="SafeArea/MainVBox/TopHeaderRow/LeftCol/TitleBox"]
+layout_mode = 0
+offset_left = -6.0
+offset_top = -14.0
+offset_right = 58.0
+offset_bottom = 50.0
+rotation = -0.18
+texture = ExtResource("5_crown")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="SudokuMasterLabel" type="Label" parent="SafeArea/MainVBox/TopHeaderRow/LeftCol/TitleBox"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 10.0
+offset_right = 284.0
+offset_bottom = 130.0
+theme_override_colors/font_color = Color(0.18, 0.52, 0.95, 1)
+theme_override_colors/font_shadow_color = Color(0.1, 0.35, 0.8, 0.35)
+theme_override_constants/shadow_offset_y = 5
+theme_override_font_sizes/font_size = 46
+text = "Sudoku
+Master"
+
+[node name="Spacer" type="Control" parent="SafeArea/MainVBox/TopHeaderRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RightProfileStack" type="VBoxContainer" parent="SafeArea/MainVBox/TopHeaderRow"]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="NameRow" type="HBoxContainer" parent="SafeArea/MainVBox/TopHeaderRow/RightProfileStack"]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 2
+
+[node name="NamePill" type="PanelContainer" parent="SafeArea/MainVBox/TopHeaderRow/RightProfileStack/NameRow"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("6_stat_pill")
+
+[node name="PlayerName" type="Label" parent="SafeArea/MainVBox/TopHeaderRow/RightProfileStack/NameRow/NamePill"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.12, 0.18, 0.3, 1)
+theme_override_font_sizes/font_size = 22
+text = "Guest_4821"
+
+[node name="AvatarIcon" type="TextureRect" parent="SafeArea/MainVBox/TopHeaderRow/RightProfileStack/NameRow"]
+custom_minimum_size = Vector2(56, 56)
+layout_mode = 2
+texture = ExtResource("7_avatar")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="LevelPill" type="PanelContainer" parent="SafeArea/MainVBox/TopHeaderRow/RightProfileStack"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_styles/panel = ExtResource("6_stat_pill")
+
+[node name="HBox" type="HBoxContainer" parent="SafeArea/MainVBox/TopHeaderRow/RightProfileStack/LevelPill"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="LevelLabel" type="Label" parent="SafeArea/MainVBox/TopHeaderRow/RightProfileStack/LevelPill/HBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.12, 0.18, 0.3, 1)
+theme_override_font_sizes/font_size = 20
+text = "Lv. 15"
+
+[node name="StarIcon" type="TextureRect" parent="SafeArea/MainVBox/TopHeaderRow/RightProfileStack/LevelPill/HBox"]
+custom_minimum_size = Vector2(22, 22)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("8_star_gold")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ScorePill" type="PanelContainer" parent="SafeArea/MainVBox/TopHeaderRow/RightProfileStack"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_styles/panel = ExtResource("6_stat_pill")
+
+[node name="HBox" type="HBoxContainer" parent="SafeArea/MainVBox/TopHeaderRow/RightProfileStack/ScorePill"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="CoinsLabel" type="Label" parent="SafeArea/MainVBox/TopHeaderRow/RightProfileStack/ScorePill/HBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.12, 0.18, 0.3, 1)
+theme_override_font_sizes/font_size = 20
+text = "Score: 1,250"
+
+[node name="CoinIcon" type="TextureRect" parent="SafeArea/MainVBox/TopHeaderRow/RightProfileStack/ScorePill/HBox"]
+custom_minimum_size = Vector2(22, 22)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("9_coin")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="SpacingCenter" type="Control" parent="SafeArea/MainVBox"]
+custom_minimum_size = Vector2(0, 18)
+layout_mode = 2
+
+[node name="CenterCard" type="PanelContainer" parent="SafeArea/MainVBox"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("10_outer_card")
+
+[node name="CardVBox" type="VBoxContainer" parent="SafeArea/MainVBox/CenterCard"]
+layout_mode = 2
+theme_override_constants/separation = 26
+
+[node name="CardHeaderLabel" type="Label" parent="SafeArea/MainVBox/CenterCard/CardVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.12, 0.18, 0.3, 1)
+theme_override_font_sizes/font_size = 42
+text = "Select Game Mode"
+horizontal_alignment = 1
+
+[node name="ModeCardsVBox" type="VBoxContainer" parent="SafeArea/MainVBox/CenterCard/CardVBox"]
+layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="CardClassic" type="PanelContainer" parent="SafeArea/MainVBox/CenterCard/CardVBox/ModeCardsVBox"]
+custom_minimum_size = Vector2(0, 108)
+layout_mode = 2
+theme_override_styles/panel = ExtResource("11_m_classic")
+
+[node name="HBox" type="HBoxContainer" parent="SafeArea/MainVBox/CenterCard/CardVBox/ModeCardsVBox/CardClassic"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Icon" type="TextureRect" parent="SafeArea/MainVBox/CenterCard/CardVBox/ModeCardsVBox/CardClassic/HBox"]
+custom_minimum_size = Vector2(68, 68)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("15_ic_classic")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ModeTitle" type="Label" parent="SafeArea/MainVBox/CenterCard/CardVBox/ModeCardsVBox/CardClassic/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.1, 0.3, 0.7, 0.3)
+theme_override_constants/shadow_offset_y = 3
+theme_override_font_sizes/font_size = 40
+text = "Classic Mode"
+vertical_alignment = 1
+
+[node name="Arrow" type="TextureRect" parent="SafeArea/MainVBox/CenterCard/CardVBox/ModeCardsVBox/CardClassic/HBox"]
+modulate = Color(1, 1, 1, 1)
+custom_minimum_size = Vector2(34, 34)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("22_ic_chevron")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="BtnClassic" type="Button" parent="SafeArea/MainVBox/CenterCard/CardVBox/ModeCardsVBox/CardClassic"]
+layout_mode = 2
+flat = true
+
+[node name="CardCampaign" type="PanelContainer" parent="SafeArea/MainVBox/CenterCard/CardVBox/ModeCardsVBox"]
+custom_minimum_size = Vector2(0, 108)
+layout_mode = 2
+theme_override_styles/panel = ExtResource("12_m_campaign")
+
+[node name="HBox" type="HBoxContainer" parent="SafeArea/MainVBox/CenterCard/CardVBox/ModeCardsVBox/CardCampaign"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Icon" type="TextureRect" parent="SafeArea/MainVBox/CenterCard/CardVBox/ModeCardsVBox/CardCampaign/HBox"]
+custom_minimum_size = Vector2(68, 68)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("16_ic_campaign")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ModeTitle" type="Label" parent="SafeArea/MainVBox/CenterCard/CardVBox/ModeCardsVBox/CardCampaign/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.024, 0.373, 0.275, 1)
+theme_override_font_sizes/font_size = 40
+text = "Campaign Mode"
+vertical_alignment = 1
+
+[node name="LockIcon" type="TextureRect" parent="SafeArea/MainVBox/CenterCard/CardVBox/ModeCardsVBox/CardCampaign/HBox"]
+custom_minimum_size = Vector2(34, 34)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("17_ic_lock")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="BtnCampaign" type="Button" parent="SafeArea/MainVBox/CenterCard/CardVBox/ModeCardsVBox/CardCampaign"]
+layout_mode = 2
+flat = true
+
+[node name="CardBattle" type="PanelContainer" parent="SafeArea/MainVBox/CenterCard/CardVBox/ModeCardsVBox"]
+custom_minimum_size = Vector2(0, 108)
+layout_mode = 2
+theme_override_styles/panel = ExtResource("13_m_battle")
+
+[node name="HBox" type="HBoxContainer" parent="SafeArea/MainVBox/CenterCard/CardVBox/ModeCardsVBox/CardBattle"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Icon" type="TextureRect" parent="SafeArea/MainVBox/CenterCard/CardVBox/ModeCardsVBox/CardBattle/HBox"]
+custom_minimum_size = Vector2(68, 68)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("18_ic_battle")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ModeTitle" type="Label" parent="SafeArea/MainVBox/CenterCard/CardVBox/ModeCardsVBox/CardBattle/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.624, 0.071, 0.224, 1)
+theme_override_font_sizes/font_size = 40
+text = "Battle Mode"
+vertical_alignment = 1
+
+[node name="VSIcon" type="TextureRect" parent="SafeArea/MainVBox/CenterCard/CardVBox/ModeCardsVBox/CardBattle/HBox"]
+custom_minimum_size = Vector2(44, 44)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("19_ic_vs")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="BtnBattle" type="Button" parent="SafeArea/MainVBox/CenterCard/CardVBox/ModeCardsVBox/CardBattle"]
+layout_mode = 2
+flat = true
+
+[node name="CardDaily" type="PanelContainer" parent="SafeArea/MainVBox/CenterCard/CardVBox/ModeCardsVBox"]
+custom_minimum_size = Vector2(0, 108)
+layout_mode = 2
+theme_override_styles/panel = ExtResource("14_m_daily")
+
+[node name="HBox" type="HBoxContainer" parent="SafeArea/MainVBox/CenterCard/CardVBox/ModeCardsVBox/CardDaily"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Icon" type="TextureRect" parent="SafeArea/MainVBox/CenterCard/CardVBox/ModeCardsVBox/CardDaily/HBox"]
+custom_minimum_size = Vector2(68, 68)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("20_ic_daily")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ModeTitle" type="Label" parent="SafeArea/MainVBox/CenterCard/CardVBox/ModeCardsVBox/CardDaily/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.471, 0.208, 0.059, 1)
+theme_override_font_sizes/font_size = 40
+text = "Daily Challenge"
+vertical_alignment = 1
+
+[node name="FlameIcon" type="TextureRect" parent="SafeArea/MainVBox/CenterCard/CardVBox/ModeCardsVBox/CardDaily/HBox"]
+custom_minimum_size = Vector2(44, 44)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("21_ic_flame")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="BtnDaily" type="Button" parent="SafeArea/MainVBox/CenterCard/CardVBox/ModeCardsVBox/CardDaily"]
+layout_mode = 2
+flat = true
+
+[node name="SpacingBottom" type="Control" parent="SafeArea/MainVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="DifficultyModal" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="DifficultyModal"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.05, 0.1, 0.2, 0.45)
+
+[node name="CenterContainer" type="CenterContainer" parent="DifficultyModal"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ModalPanel" type="PanelContainer" parent="DifficultyModal/CenterContainer"]
+custom_minimum_size = Vector2(600, 480)
+layout_mode = 2
+theme_override_styles/panel = ExtResource("26_modal_card")
+
+[node name="VBox" type="VBoxContainer" parent="DifficultyModal/CenterContainer/ModalPanel"]
+layout_mode = 2
+theme_override_constants/separation = 22
+
+[node name="Title" type="Label" parent="DifficultyModal/CenterContainer/ModalPanel/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.12, 0.18, 0.3, 1)
+theme_override_font_sizes/font_size = 36
+text = "Select Difficulty"
+horizontal_alignment = 1
+
+[node name="DiffList" type="VBoxContainer" parent="DifficultyModal/CenterContainer/ModalPanel/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="BtnEasy" type="Button" parent="DifficultyModal/CenterContainer/ModalPanel/VBox/DiffList"]
+custom_minimum_size = Vector2(0, 68)
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = ExtResource("27_btn_blue")
+text = "EASY"
+
+[node name="BtnMedium" type="Button" parent="DifficultyModal/CenterContainer/ModalPanel/VBox/DiffList"]
+custom_minimum_size = Vector2(0, 68)
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = ExtResource("27_btn_blue")
+text = "MEDIUM"
+
+[node name="BtnHard" type="Button" parent="DifficultyModal/CenterContainer/ModalPanel/VBox/DiffList"]
+custom_minimum_size = Vector2(0, 68)
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = ExtResource("27_btn_blue")
+text = "HARD"
+
+[node name="BtnCloseModal" type="Button" parent="DifficultyModal/CenterContainer/ModalPanel/VBox"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(0.4, 0.5, 0.65, 1)
+theme_override_font_sizes/font_size = 22
+flat = true
+text = "CANCEL"

@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scenes/components/SudokuBoardGrid.gd" id="1_grid"]
+[ext_resource type="StyleBox" path="res://assets/themes/glass_panel.tres" id="2_panel"]
+
+[node name="SudokuBoardGrid" type="AspectRatioContainer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -215.0
+offset_top = -215.0
+offset_right = 215.0
+offset_bottom = 215.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+stretch_mode = 1
+script = ExtResource("1_grid")
+
+[node name="BoardPanel" type="PanelContainer" parent="."]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("2_panel")
+
+[node name="OuterGrid" type="GridContainer" parent="BoardPanel"]
+layout_mode = 2
+theme_override_constants/h_separation = 6
+theme_override_constants/v_separation = 6
+columns = 3

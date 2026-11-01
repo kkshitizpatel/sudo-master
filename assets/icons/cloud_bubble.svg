@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 120" width="200" height="120">
+  <defs>
+    <filter id="cloudSoft" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4"/>
+    </filter>
+  </defs>
+  <path d="M 30 90 A 30 30 0 0 1 70 50 A 45 45 0 0 1 140 45 A 35 35 0 0 1 180 85 A 25 25 0 0 1 160 105 L 30 105 Z" 
+        fill="#FFFFFF" fill-opacity="0.8" filter="url(#cloudSoft)"/>
+</svg>

@@ -1,0 +1,407 @@
+[gd_scene load_steps=18 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/ClaimLevelScreen.gd" id="1_claim"]
+[ext_resource type="PackedScene" path="res://scenes/components/AuroraBackground.tscn" id="2_aurora"]
+[ext_resource type="StyleBox" path="res://assets/themes/language_pill.tres" id="3_lang_pill"]
+[ext_resource type="Texture2D" path="res://assets/icons/icon_globe.svg" id="4_globe"]
+[ext_resource type="StyleBox" path="res://assets/themes/claim_outer_card.tres" id="5_outer_card"]
+[ext_resource type="StyleBox" path="res://assets/themes/tier_card_green.tres" id="6_tier_green"]
+[ext_resource type="StyleBox" path="res://assets/themes/tier_card_peach.tres" id="7_tier_peach"]
+[ext_resource type="StyleBox" path="res://assets/themes/tier_card_blue.tres" id="8_tier_blue"]
+[ext_resource type="StyleBox" path="res://assets/themes/tier_card_gold.tres" id="9_tier_gold"]
+[ext_resource type="Texture2D" path="res://assets/icons/badge_level_1.svg" id="10_b1"]
+[ext_resource type="Texture2D" path="res://assets/icons/badge_level_15.svg" id="11_b15"]
+[ext_resource type="Texture2D" path="res://assets/icons/badge_level_30.svg" id="12_b30"]
+[ext_resource type="Texture2D" path="res://assets/icons/badge_level_50.svg" id="13_b50"]
+[ext_resource type="Texture2D" path="res://assets/icons/icon_chevron_right.svg" id="14_chevron"]
+[ext_resource type="StyleBox" path="res://assets/themes/welcome_floating_tile.tres" id="15_tile"]
+[ext_resource type="Texture2D" path="res://assets/icons/icon_pencil_3d.svg" id="16_pencil"]
+[ext_resource type="Texture2D" path="res://assets/icons/star_soft_blue.svg" id="17_star"]
+
+[node name="ClaimLevelScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_claim")
+
+[node name="AuroraBackground" parent="." instance=ExtResource("2_aurora")]
+layout_mode = 1
+
+[node name="FloatingBackground" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Tile8" type="PanelContainer" parent="FloatingBackground"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = -240.0
+offset_right = 170.0
+offset_bottom = -110.0
+grow_vertical = 0
+rotation = -0.1
+theme_override_styles/panel = ExtResource("15_tile")
+
+[node name="Label" type="Label" parent="FloatingBackground/Tile8"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.376, 0.647, 0.980, 1)
+theme_override_font_sizes/font_size = 54
+text = "8"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StarBottomLeft" type="TextureRect" parent="FloatingBackground"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 180.0
+offset_top = -210.0
+offset_right = 228.0
+offset_bottom = -162.0
+grow_vertical = 0
+texture = ExtResource("17_star")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Tile7" type="PanelContainer" parent="FloatingBackground"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -170.0
+offset_top = -240.0
+offset_right = -40.0
+offset_bottom = -110.0
+grow_horizontal = 0
+grow_vertical = 0
+rotation = 0.12
+theme_override_styles/panel = ExtResource("15_tile")
+
+[node name="Label" type="Label" parent="FloatingBackground/Tile7"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.376, 0.647, 0.980, 1)
+theme_override_font_sizes/font_size = 54
+text = "7"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PencilCenter" type="TextureRect" parent="FloatingBackground"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -75.0
+offset_top = -210.0
+offset_right = 75.0
+offset_bottom = -60.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("16_pencil")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="SafeArea" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 52
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 52
+theme_override_constants/margin_bottom = 44
+
+[node name="MainVBox" type="VBoxContainer" parent="SafeArea"]
+layout_mode = 2
+alignment = 1
+
+[node name="TopBar" type="HBoxContainer" parent="SafeArea/MainVBox"]
+layout_mode = 2
+
+[node name="LanguagePill" type="PanelContainer" parent="SafeArea/MainVBox/TopBar"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("3_lang_pill")
+
+[node name="HBox" type="HBoxContainer" parent="SafeArea/MainVBox/TopBar/LanguagePill"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="GlobeIcon" type="TextureRect" parent="SafeArea/MainVBox/TopBar/LanguagePill/HBox"]
+custom_minimum_size = Vector2(26, 26)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("4_globe")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="LanguageLabel" type="Label" parent="SafeArea/MainVBox/TopBar/LanguagePill/HBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2, 0.28, 0.4, 1)
+theme_override_font_sizes/font_size = 24
+text = "Language: English"
+
+[node name="SpacingTitle" type="Control" parent="SafeArea/MainVBox"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="TitleSection" type="VBoxContainer" parent="SafeArea/MainVBox"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="TitleLabel" type="Label" parent="SafeArea/MainVBox/TitleSection"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.984, 0.647, 0.145, 1)
+theme_override_colors/font_shadow_color = Color(0.85, 0.35, 0.05, 0.4)
+theme_override_colors/font_outline_color = Color(0.92, 0.52, 0.08, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 6
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 68
+text = "CLAIM YOUR LEVEL!"
+horizontal_alignment = 1
+
+[node name="SubtitleLabel" type="Label" parent="SafeArea/MainVBox/TitleSection"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.12, 0.18, 0.3, 1)
+theme_override_font_sizes/font_size = 28
+text = "Select your starting level based on
+how often you play!"
+horizontal_alignment = 1
+
+[node name="SpacingCard" type="Control" parent="SafeArea/MainVBox"]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+
+[node name="CenterCard" type="PanelContainer" parent="SafeArea/MainVBox"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("5_outer_card")
+
+[node name="TiersVBox" type="VBoxContainer" parent="SafeArea/MainVBox/CenterCard"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Tier1Card" type="PanelContainer" parent="SafeArea/MainVBox/CenterCard/TiersVBox"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("6_tier_green")
+
+[node name="HBox" type="HBoxContainer" parent="SafeArea/MainVBox/CenterCard/TiersVBox/Tier1Card"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Badge" type="TextureRect" parent="SafeArea/MainVBox/CenterCard/TiersVBox/Tier1Card/HBox"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+texture = ExtResource("10_b1")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextVBox" type="VBoxContainer" parent="SafeArea/MainVBox/CenterCard/TiersVBox/Tier1Card/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="TierName" type="Label" parent="SafeArea/MainVBox/CenterCard/TiersVBox/Tier1Card/HBox/TextVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.082, 0.502, 0.239, 1)
+theme_override_font_sizes/font_size = 34
+text = "Level 1"
+
+[node name="TierDesc" type="Label" parent="SafeArea/MainVBox/CenterCard/TiersVBox/Tier1Card/HBox/TextVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2, 0.28, 0.4, 1)
+theme_override_font_sizes/font_size = 23
+text = "Beginner • Gentle
+boards & basic hints."
+
+[node name="Arrow" type="TextureRect" parent="SafeArea/MainVBox/CenterCard/TiersVBox/Tier1Card/HBox"]
+modulate = Color(0.082, 0.502, 0.239, 1)
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("14_chevron")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="BtnSelectTier1" type="Button" parent="SafeArea/MainVBox/CenterCard/TiersVBox/Tier1Card"]
+layout_mode = 2
+flat = true
+
+[node name="Tier2Card" type="PanelContainer" parent="SafeArea/MainVBox/CenterCard/TiersVBox"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("7_tier_peach")
+
+[node name="HBox" type="HBoxContainer" parent="SafeArea/MainVBox/CenterCard/TiersVBox/Tier2Card"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Badge" type="TextureRect" parent="SafeArea/MainVBox/CenterCard/TiersVBox/Tier2Card/HBox"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+texture = ExtResource("11_b15")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextVBox" type="VBoxContainer" parent="SafeArea/MainVBox/CenterCard/TiersVBox/Tier2Card/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="TierName" type="Label" parent="SafeArea/MainVBox/CenterCard/TiersVBox/Tier2Card/HBox/TextVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.761, 0.255, 0.047, 1)
+theme_override_font_sizes/font_size = 34
+text = "Level 15"
+
+[node name="TierDesc" type="Label" parent="SafeArea/MainVBox/CenterCard/TiersVBox/Tier2Card/HBox/TextVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2, 0.28, 0.4, 1)
+theme_override_font_sizes/font_size = 23
+text = "Novice • Balanced
+casual puzzles."
+
+[node name="Arrow" type="TextureRect" parent="SafeArea/MainVBox/CenterCard/TiersVBox/Tier2Card/HBox"]
+modulate = Color(0.761, 0.255, 0.047, 1)
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("14_chevron")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="BtnSelectTier2" type="Button" parent="SafeArea/MainVBox/CenterCard/TiersVBox/Tier2Card"]
+layout_mode = 2
+flat = true
+
+[node name="Tier3Card" type="PanelContainer" parent="SafeArea/MainVBox/CenterCard/TiersVBox"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("8_tier_blue")
+
+[node name="HBox" type="HBoxContainer" parent="SafeArea/MainVBox/CenterCard/TiersVBox/Tier3Card"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Badge" type="TextureRect" parent="SafeArea/MainVBox/CenterCard/TiersVBox/Tier3Card/HBox"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+texture = ExtResource("12_b30")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextVBox" type="VBoxContainer" parent="SafeArea/MainVBox/CenterCard/TiersVBox/Tier3Card/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="TierName" type="Label" parent="SafeArea/MainVBox/CenterCard/TiersVBox/Tier3Card/HBox/TextVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.114, 0.306, 0.847, 1)
+theme_override_font_sizes/font_size = 34
+text = "Level 30"
+
+[node name="TierDesc" type="Label" parent="SafeArea/MainVBox/CenterCard/TiersVBox/Tier3Card/HBox/TextVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2, 0.28, 0.4, 1)
+theme_override_font_sizes/font_size = 23
+text = "Regular • Intermediate
+logical boards."
+
+[node name="Arrow" type="TextureRect" parent="SafeArea/MainVBox/CenterCard/TiersVBox/Tier3Card/HBox"]
+modulate = Color(0.114, 0.306, 0.847, 1)
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("14_chevron")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="BtnSelectTier3" type="Button" parent="SafeArea/MainVBox/CenterCard/TiersVBox/Tier3Card"]
+layout_mode = 2
+flat = true
+
+[node name="Tier4Card" type="PanelContainer" parent="SafeArea/MainVBox/CenterCard/TiersVBox"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("9_tier_gold")
+
+[node name="HBox" type="HBoxContainer" parent="SafeArea/MainVBox/CenterCard/TiersVBox/Tier4Card"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Badge" type="TextureRect" parent="SafeArea/MainVBox/CenterCard/TiersVBox/Tier4Card/HBox"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+texture = ExtResource("13_b50")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextVBox" type="VBoxContainer" parent="SafeArea/MainVBox/CenterCard/TiersVBox/Tier4Card/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="TierName" type="Label" parent="SafeArea/MainVBox/CenterCard/TiersVBox/Tier4Card/HBox/TextVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.706, 0.325, 0.035, 1)
+theme_override_font_sizes/font_size = 34
+text = "Level 50"
+
+[node name="TierDesc" type="Label" parent="SafeArea/MainVBox/CenterCard/TiersVBox/Tier4Card/HBox/TextVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2, 0.28, 0.4, 1)
+theme_override_font_sizes/font_size = 23
+text = "Expert • Ultimate
+Master puzzle challenges."
+
+[node name="Arrow" type="TextureRect" parent="SafeArea/MainVBox/CenterCard/TiersVBox/Tier4Card/HBox"]
+modulate = Color(0.706, 0.325, 0.035, 1)
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("14_chevron")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="BtnSelectTier4" type="Button" parent="SafeArea/MainVBox/CenterCard/TiersVBox/Tier4Card"]
+layout_mode = 2
+flat = true
+
+[node name="SpacingBottom" type="Control" parent="SafeArea/MainVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="FooterSection" type="VBoxContainer" parent="SafeArea/MainVBox"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="FooterLine1" type="Label" parent="SafeArea/MainVBox/FooterSection"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.12, 0.18, 0.3, 1)
+theme_override_font_sizes/font_size = 24
+text = "Game auto-adjusts based on your speed & mistakes!"
+horizontal_alignment = 1
+
+[node name="FooterLine2" type="Label" parent="SafeArea/MainVBox/FooterSection"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.12, 0.18, 0.3, 1)
+theme_override_font_sizes/font_size = 26
+text = "Tap any level to start playing!"
+horizontal_alignment = 1

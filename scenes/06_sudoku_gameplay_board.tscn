@@ -1,0 +1,385 @@
+[gd_scene load_steps=20 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/SudokuGameplayBoard.gd" id="1_gameplay"]
+[ext_resource type="PackedScene" path="res://scenes/components/AuroraBackground.tscn" id="2_aurora"]
+[ext_resource type="StyleBox" path="res://assets/themes/btn_circle_back.tres" id="3_back_style"]
+[ext_resource type="Texture2D" path="res://assets/icons/arrow_back.svg" id="4_back_icon"]
+[ext_resource type="StyleBox" path="res://assets/themes/btn_circle_gear.tres" id="5_btn_square"]
+[ext_resource type="Texture2D" path="res://assets/icons/icon_share_blue.svg" id="6_share_icon"]
+[ext_resource type="Texture2D" path="res://assets/icons/icon_star_gold.svg" id="7_star_icon"]
+[ext_resource type="Texture2D" path="res://assets/icons/palette_theme.svg" id="8_theme_icon"]
+[ext_resource type="Texture2D" path="res://assets/icons/icon_gear_blue.svg" id="9_gear_icon"]
+[ext_resource type="Texture2D" path="res://assets/icons/icon_pumpkin_3d.svg" id="10_pumpkin"]
+[ext_resource type="StyleBox" path="res://assets/themes/board_glass_frame.tres" id="11_frame"]
+[ext_resource type="PackedScene" path="res://scenes/components/SudokuBoardGrid.tscn" id="12_grid"]
+[ext_resource type="Texture2D" path="res://assets/icons/heart_dark.svg" id="13_heart_dark"]
+[ext_resource type="Texture2D" path="res://assets/icons/heart_empty.svg" id="14_heart_empty"]
+[ext_resource type="StyleBox" path="res://assets/themes/difficulty_badge_pill.tres" id="15_diff_pill"]
+[ext_resource type="PackedScene" path="res://scenes/components/NumericKeypad.tscn" id="16_keypad"]
+[ext_resource type="StyleBox" path="res://assets/themes/welcome_dialog_card.tres" id="17_modal_card"]
+[ext_resource type="StyleBox" path="res://assets/themes/welcome_accept_btn.tres" id="18_btn_blue"]
+[ext_resource type="StyleBox" path="res://assets/themes/btn_new_game_glass.tres" id="19_btn_glass"]
+
+[node name="SudokuGameplayBoard" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gameplay")
+
+[node name="AuroraBackground" parent="." instance=ExtResource("2_aurora")]
+layout_mode = 1
+
+[node name="SafeArea" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 36
+theme_override_constants/margin_top = 56
+theme_override_constants/margin_right = 36
+theme_override_constants/margin_bottom = 36
+
+[node name="ContentVBox" type="VBoxContainer" parent="SafeArea"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="TopBar" type="HBoxContainer" parent="SafeArea/ContentVBox"]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="BtnBack" type="Button" parent="SafeArea/ContentVBox/TopBar"]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+focus_mode = 0
+theme_override_styles/normal = ExtResource("3_back_style")
+theme_override_styles/hover = ExtResource("3_back_style")
+theme_override_styles/pressed = ExtResource("3_back_style")
+icon = ExtResource("4_back_icon")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Spacer" type="Control" parent="SafeArea/ContentVBox/TopBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BtnShare" type="Button" parent="SafeArea/ContentVBox/TopBar"]
+custom_minimum_size = Vector2(66, 66)
+layout_mode = 2
+focus_mode = 0
+theme_override_styles/normal = ExtResource("5_btn_square")
+theme_override_styles/hover = ExtResource("5_btn_square")
+theme_override_styles/pressed = ExtResource("5_btn_square")
+icon = ExtResource("6_share_icon")
+icon_alignment = 1
+expand_icon = true
+
+[node name="BtnFavorite" type="Button" parent="SafeArea/ContentVBox/TopBar"]
+custom_minimum_size = Vector2(66, 66)
+layout_mode = 2
+focus_mode = 0
+theme_override_styles/normal = ExtResource("5_btn_square")
+theme_override_styles/hover = ExtResource("5_btn_square")
+theme_override_styles/pressed = ExtResource("5_btn_square")
+icon = ExtResource("7_star_icon")
+icon_alignment = 1
+expand_icon = true
+
+[node name="BtnTheme" type="Button" parent="SafeArea/ContentVBox/TopBar"]
+custom_minimum_size = Vector2(66, 66)
+layout_mode = 2
+focus_mode = 0
+theme_override_styles/normal = ExtResource("5_btn_square")
+theme_override_styles/hover = ExtResource("5_btn_square")
+theme_override_styles/pressed = ExtResource("5_btn_square")
+icon = ExtResource("8_theme_icon")
+icon_alignment = 1
+expand_icon = true
+
+[node name="BtnSettings" type="Button" parent="SafeArea/ContentVBox/TopBar"]
+custom_minimum_size = Vector2(66, 66)
+layout_mode = 2
+focus_mode = 0
+theme_override_styles/normal = ExtResource("5_btn_square")
+theme_override_styles/hover = ExtResource("5_btn_square")
+theme_override_styles/pressed = ExtResource("5_btn_square")
+icon = ExtResource("9_gear_icon")
+icon_alignment = 1
+expand_icon = true
+
+[node name="StatsBar" type="HBoxContainer" parent="SafeArea/ContentVBox"]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="ScoreHBox" type="HBoxContainer" parent="SafeArea/ContentVBox/StatsBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+alignment = 0
+
+[node name="Pumpkin" type="TextureRect" parent="SafeArea/ContentVBox/StatsBar/ScoreHBox"]
+custom_minimum_size = Vector2(38, 38)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("10_pumpkin")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ScoreLabel" type="Label" parent="SafeArea/ContentVBox/StatsBar/ScoreHBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.12, 0.18, 0.3, 1)
+theme_override_font_sizes/font_size = 34
+text = "Score: 0"
+
+[node name="LevelLabel" type="Label" parent="SafeArea/ContentVBox/StatsBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.01, 0.52, 0.78, 1)
+theme_override_font_sizes/font_size = 46
+text = "Level 1"
+horizontal_alignment = 1
+
+[node name="TimerLabel" type="Label" parent="SafeArea/ContentVBox/StatsBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.12, 0.18, 0.3, 1)
+theme_override_font_sizes/font_size = 34
+text = "00:03"
+horizontal_alignment = 2
+
+[node name="BoardArea" type="PanelContainer" parent="SafeArea/ContentVBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = ExtResource("11_frame")
+
+[node name="SudokuBoardGrid" parent="SafeArea/ContentVBox/BoardArea" instance=ExtResource("12_grid")]
+custom_minimum_size = Vector2(400, 400)
+layout_mode = 2
+
+[node name="StatusRow" type="HBoxContainer" parent="SafeArea/ContentVBox"]
+layout_mode = 2
+theme_override_constants/separation = 14
+alignment = 1
+
+[node name="MistakesHBox" type="HBoxContainer" parent="SafeArea/ContentVBox/StatusRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="MistakesLabel" type="Label" parent="SafeArea/ContentVBox/StatusRow/MistakesHBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2, 0.26, 0.35, 1)
+theme_override_font_sizes/font_size = 32
+text = "Mistakes: 0/3"
+
+[node name="HeartsBox" type="HBoxContainer" parent="SafeArea/ContentVBox/StatusRow/MistakesHBox"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Heart1" type="TextureRect" parent="SafeArea/ContentVBox/StatusRow/MistakesHBox/HeartsBox"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("13_heart_dark")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Heart2" type="TextureRect" parent="SafeArea/ContentVBox/StatusRow/MistakesHBox/HeartsBox"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("13_heart_dark")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Heart3" type="TextureRect" parent="SafeArea/ContentVBox/StatusRow/MistakesHBox/HeartsBox"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("13_heart_dark")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Spacer" type="Control" parent="SafeArea/ContentVBox/StatusRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="DifficultyBadge" type="PanelContainer" parent="SafeArea/ContentVBox/StatusRow"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("15_diff_pill")
+
+[node name="DiffLabel" type="Label" parent="SafeArea/ContentVBox/StatusRow/DifficultyBadge"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.01, 0.52, 0.78, 1)
+theme_override_font_sizes/font_size = 30
+text = "Easy"
+
+[node name="KeypadArea" type="Control" parent="SafeArea/ContentVBox"]
+custom_minimum_size = Vector2(0, 275)
+layout_mode = 2
+
+[node name="NumericKeypad" parent="SafeArea/ContentVBox/KeypadArea" instance=ExtResource("16_keypad")]
+layout_mode = 1
+
+[node name="ReviveModal" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Dimmer" type="ColorRect" parent="ReviveModal"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.05, 0.1, 0.2, 0.5)
+
+[node name="CenterContainer" type="CenterContainer" parent="ReviveModal"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ModalPanel" type="PanelContainer" parent="ReviveModal/CenterContainer"]
+custom_minimum_size = Vector2(650, 480)
+layout_mode = 2
+theme_override_styles/panel = ExtResource("17_modal_card")
+
+[node name="VBox" type="VBoxContainer" parent="ReviveModal/CenterContainer/ModalPanel"]
+layout_mode = 2
+theme_override_constants/separation = 22
+
+[node name="Title" type="Label" parent="ReviveModal/CenterContainer/ModalPanel/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.86, 0.15, 0.15, 1)
+theme_override_font_sizes/font_size = 46
+text = "3 MISTAKES!"
+horizontal_alignment = 1
+
+[node name="Desc" type="Label" parent="ReviveModal/CenterContainer/ModalPanel/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 0.38, 0.5, 1)
+theme_override_font_sizes/font_size = 28
+text = "You're out of lives. Revive to keep solving!"
+horizontal_alignment = 1
+
+[node name="BtnReviveCoins" type="Button" parent="ReviveModal/CenterContainer/ModalPanel/VBox"]
+custom_minimum_size = Vector2(0, 88)
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 34
+theme_override_styles/normal = ExtResource("18_btn_blue")
+text = "🪙 Revive (-50 Coins)"
+
+[node name="BtnReviveAd" type="Button" parent="ReviveModal/CenterContainer/ModalPanel/VBox"]
+custom_minimum_size = Vector2(0, 88)
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(0.12, 0.23, 0.54, 1)
+theme_override_font_sizes/font_size = 34
+theme_override_styles/normal = ExtResource("19_btn_glass")
+text = "🎬 Watch Ad to Revive"
+
+[node name="BtnGiveUp" type="Button" parent="ReviveModal/CenterContainer/ModalPanel/VBox"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(0.4, 0.5, 0.65, 1)
+theme_override_font_sizes/font_size = 28
+flat = true
+text = "Give Up & Exit"
+
+[node name="VictoryModal" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Dimmer" type="ColorRect" parent="VictoryModal"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.05, 0.1, 0.2, 0.5)
+
+[node name="CenterContainer" type="CenterContainer" parent="VictoryModal"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ModalPanel" type="PanelContainer" parent="VictoryModal/CenterContainer"]
+custom_minimum_size = Vector2(650, 520)
+layout_mode = 2
+theme_override_styles/panel = ExtResource("17_modal_card")
+
+[node name="VBox" type="VBoxContainer" parent="VictoryModal/CenterContainer/ModalPanel"]
+layout_mode = 2
+theme_override_constants/separation = 22
+
+[node name="Title" type="Label" parent="VictoryModal/CenterContainer/ModalPanel/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.01, 0.52, 0.78, 1)
+theme_override_font_sizes/font_size = 52
+text = "VICTORY!"
+horizontal_alignment = 1
+
+[node name="StarsLabel" type="Label" parent="VictoryModal/CenterContainer/ModalPanel/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.96, 0.65, 0.1, 1)
+theme_override_font_sizes/font_size = 40
+text = "★★★"
+horizontal_alignment = 1
+
+[node name="TimeLabel" type="Label" parent="VictoryModal/CenterContainer/ModalPanel/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 0.38, 0.5, 1)
+theme_override_font_sizes/font_size = 28
+text = "Time: 02:45"
+horizontal_alignment = 1
+
+[node name="FinalScoreLabel" type="Label" parent="VictoryModal/CenterContainer/ModalPanel/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.12, 0.18, 0.3, 1)
+theme_override_font_sizes/font_size = 36
+text = "Final Score: 1,420"
+horizontal_alignment = 1
+
+[node name="BtnNextLevel" type="Button" parent="VictoryModal/CenterContainer/ModalPanel/VBox"]
+custom_minimum_size = Vector2(0, 88)
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 34
+theme_override_styles/normal = ExtResource("18_btn_blue")
+text = "Next Level ▶"
+
+[node name="BtnVictoryHome" type="Button" parent="VictoryModal/CenterContainer/ModalPanel/VBox"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(0.4, 0.5, 0.65, 1)
+theme_override_font_sizes/font_size = 28
+flat = true
+text = "Return to Home"
