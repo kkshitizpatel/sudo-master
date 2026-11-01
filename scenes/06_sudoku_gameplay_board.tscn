@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3]
+[gd_scene load_steps=27 format=3]
 
 [ext_resource type="Script" path="res://scripts/ui/SudokuGameplayBoard.gd" id="1_gameplay"]
 [ext_resource type="PackedScene" path="res://scenes/components/AuroraBackground.tscn" id="2_aurora"]
@@ -11,14 +11,21 @@
 [ext_resource type="Texture2D" path="res://assets/icons/icon_gear_blue.svg" id="9_gear_icon"]
 [ext_resource type="Texture2D" path="res://assets/icons/icon_pumpkin_3d.svg" id="10_pumpkin"]
 [ext_resource type="StyleBox" path="res://assets/themes/board_glass_frame.tres" id="11_frame"]
-[ext_resource type="PackedScene" path="res://scenes/components/SudokuBoardGrid.tscn" id="12_grid"]
+[ext_resource type="Script" path="res://scenes/components/SudokuBoardGrid.gd" id="12_grid_script"]
 [ext_resource type="Texture2D" path="res://assets/icons/heart_dark.svg" id="13_heart_dark"]
 [ext_resource type="Texture2D" path="res://assets/icons/heart_empty.svg" id="14_heart_empty"]
 [ext_resource type="StyleBox" path="res://assets/themes/difficulty_badge_pill.tres" id="15_diff_pill"]
-[ext_resource type="PackedScene" path="res://scenes/components/NumericKeypad.tscn" id="16_keypad"]
-[ext_resource type="StyleBox" path="res://assets/themes/welcome_dialog_card.tres" id="17_modal_card"]
-[ext_resource type="StyleBox" path="res://assets/themes/welcome_accept_btn.tres" id="18_btn_blue"]
-[ext_resource type="StyleBox" path="res://assets/themes/btn_new_game_glass.tres" id="19_btn_glass"]
+[ext_resource type="StyleBox" path="res://assets/themes/tool_tile_btn.tres" id="16_tool_box"]
+[ext_resource type="StyleBox" path="res://assets/themes/badge_pill_blue.tres" id="17_badge_pill"]
+[ext_resource type="Texture2D" path="res://assets/icons/icon_tool_counts.svg" id="18_ic_counts"]
+[ext_resource type="Texture2D" path="res://assets/icons/icon_tool_undo.svg" id="19_ic_undo"]
+[ext_resource type="Texture2D" path="res://assets/icons/icon_tool_erase.svg" id="20_ic_erase"]
+[ext_resource type="Texture2D" path="res://assets/icons/icon_tool_notes.svg" id="21_ic_notes"]
+[ext_resource type="Texture2D" path="res://assets/icons/icon_tool_hint.svg" id="22_ic_hint"]
+[ext_resource type="StyleBox" path="res://assets/themes/digit_capsule_key.tres" id="23_capsule_box"]
+[ext_resource type="StyleBox" path="res://assets/themes/welcome_dialog_card.tres" id="24_modal_card"]
+[ext_resource type="StyleBox" path="res://assets/themes/welcome_accept_btn.tres" id="25_btn_blue"]
+[ext_resource type="StyleBox" path="res://assets/themes/btn_new_game_glass.tres" id="26_btn_glass"]
 
 [node name="SudokuGameplayBoard" type="Control"]
 layout_mode = 3
@@ -32,27 +39,29 @@ script = ExtResource("1_gameplay")
 [node name="AuroraBackground" parent="." instance=ExtResource("2_aurora")]
 layout_mode = 1
 
-[node name="SafeArea" type="MarginContainer" parent="."]
+[node name="SafeMarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 36
-theme_override_constants/margin_top = 56
-theme_override_constants/margin_right = 36
-theme_override_constants/margin_bottom = 36
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 40
 
-[node name="ContentVBox" type="VBoxContainer" parent="SafeArea"]
+[node name="MainVBox" type="VBoxContainer" parent="SafeMarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 20
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 16
 
-[node name="TopBar" type="HBoxContainer" parent="SafeArea/ContentVBox"]
+[node name="TopBar" type="HBoxContainer" parent="SafeMarginContainer/MainVBox"]
 layout_mode = 2
 theme_override_constants/separation = 14
 
-[node name="BtnBack" type="Button" parent="SafeArea/ContentVBox/TopBar"]
+[node name="BtnBack" type="Button" parent="SafeMarginContainer/MainVBox/TopBar"]
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
 focus_mode = 0
@@ -63,11 +72,11 @@ icon = ExtResource("4_back_icon")
 icon_alignment = 1
 expand_icon = true
 
-[node name="Spacer" type="Control" parent="SafeArea/ContentVBox/TopBar"]
+[node name="Spacer" type="Control" parent="SafeMarginContainer/MainVBox/TopBar"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="BtnShare" type="Button" parent="SafeArea/ContentVBox/TopBar"]
+[node name="BtnShare" type="Button" parent="SafeMarginContainer/MainVBox/TopBar"]
 custom_minimum_size = Vector2(66, 66)
 layout_mode = 2
 focus_mode = 0
@@ -78,7 +87,7 @@ icon = ExtResource("6_share_icon")
 icon_alignment = 1
 expand_icon = true
 
-[node name="BtnFavorite" type="Button" parent="SafeArea/ContentVBox/TopBar"]
+[node name="BtnFavorite" type="Button" parent="SafeMarginContainer/MainVBox/TopBar"]
 custom_minimum_size = Vector2(66, 66)
 layout_mode = 2
 focus_mode = 0
@@ -89,7 +98,7 @@ icon = ExtResource("7_star_icon")
 icon_alignment = 1
 expand_icon = true
 
-[node name="BtnTheme" type="Button" parent="SafeArea/ContentVBox/TopBar"]
+[node name="BtnTheme" type="Button" parent="SafeMarginContainer/MainVBox/TopBar"]
 custom_minimum_size = Vector2(66, 66)
 layout_mode = 2
 focus_mode = 0
@@ -100,7 +109,7 @@ icon = ExtResource("8_theme_icon")
 icon_alignment = 1
 expand_icon = true
 
-[node name="BtnSettings" type="Button" parent="SafeArea/ContentVBox/TopBar"]
+[node name="BtnSettings" type="Button" parent="SafeMarginContainer/MainVBox/TopBar"]
 custom_minimum_size = Vector2(66, 66)
 layout_mode = 2
 focus_mode = 0
@@ -111,18 +120,18 @@ icon = ExtResource("9_gear_icon")
 icon_alignment = 1
 expand_icon = true
 
-[node name="StatsBar" type="HBoxContainer" parent="SafeArea/ContentVBox"]
+[node name="StatsBar" type="HBoxContainer" parent="SafeMarginContainer/MainVBox"]
 layout_mode = 2
 theme_override_constants/separation = 16
 alignment = 1
 
-[node name="ScoreHBox" type="HBoxContainer" parent="SafeArea/ContentVBox/StatsBar"]
+[node name="ScoreHBox" type="HBoxContainer" parent="SafeMarginContainer/MainVBox/StatsBar"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 10
 alignment = 0
 
-[node name="Pumpkin" type="TextureRect" parent="SafeArea/ContentVBox/StatsBar/ScoreHBox"]
+[node name="Pumpkin" type="TextureRect" parent="SafeMarginContainer/MainVBox/StatsBar/ScoreHBox"]
 custom_minimum_size = Vector2(38, 38)
 layout_mode = 2
 size_flags_vertical = 4
@@ -130,13 +139,13 @@ texture = ExtResource("10_pumpkin")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="ScoreLabel" type="Label" parent="SafeArea/ContentVBox/StatsBar/ScoreHBox"]
+[node name="ScoreLabel" type="Label" parent="SafeMarginContainer/MainVBox/StatsBar/ScoreHBox"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.12, 0.18, 0.3, 1)
 theme_override_font_sizes/font_size = 34
 text = "Score: 0"
 
-[node name="LevelLabel" type="Label" parent="SafeArea/ContentVBox/StatsBar"]
+[node name="LevelLabel" type="Label" parent="SafeMarginContainer/MainVBox/StatsBar"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.01, 0.52, 0.78, 1)
@@ -144,7 +153,7 @@ theme_override_font_sizes/font_size = 46
 text = "Level 1"
 horizontal_alignment = 1
 
-[node name="TimerLabel" type="Label" parent="SafeArea/ContentVBox/StatsBar"]
+[node name="TimerLabel" type="Label" parent="SafeMarginContainer/MainVBox/StatsBar"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.12, 0.18, 0.3, 1)
@@ -152,37 +161,54 @@ theme_override_font_sizes/font_size = 34
 text = "00:03"
 horizontal_alignment = 2
 
-[node name="BoardArea" type="PanelContainer" parent="SafeArea/ContentVBox"]
+[node name="BoardWrapper" type="MarginContainer" parent="SafeMarginContainer/MainVBox"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_right = 16
+
+[node name="BoardAspect" type="AspectRatioContainer" parent="SafeMarginContainer/MainVBox/BoardWrapper"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+stretch_mode = 2
+
+[node name="BoardFrame" type="Panel" parent="SafeMarginContainer/MainVBox/BoardWrapper/BoardAspect"]
+layout_mode = 2
+mouse_filter = 2
 theme_override_styles/panel = ExtResource("11_frame")
 
-[node name="SudokuBoardGrid" parent="SafeArea/ContentVBox/BoardArea" instance=ExtResource("12_grid")]
-custom_minimum_size = Vector2(400, 400)
+[node name="SudokuGrid" type="GridContainer" parent="SafeMarginContainer/MainVBox/BoardWrapper/BoardAspect"]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/h_separation = 3
+theme_override_constants/v_separation = 3
+columns = 9
+script = ExtResource("12_grid_script")
 
-[node name="StatusRow" type="HBoxContainer" parent="SafeArea/ContentVBox"]
+[node name="MistakesRow" type="HBoxContainer" parent="SafeMarginContainer/MainVBox"]
 layout_mode = 2
 theme_override_constants/separation = 14
 alignment = 1
 
-[node name="MistakesHBox" type="HBoxContainer" parent="SafeArea/ContentVBox/StatusRow"]
+[node name="MistakesHBox" type="HBoxContainer" parent="SafeMarginContainer/MainVBox/MistakesRow"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 10
 
-[node name="MistakesLabel" type="Label" parent="SafeArea/ContentVBox/StatusRow/MistakesHBox"]
+[node name="MistakesLabel" type="Label" parent="SafeMarginContainer/MainVBox/MistakesRow/MistakesHBox"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.2, 0.26, 0.35, 1)
 theme_override_font_sizes/font_size = 32
-text = "Mistakes: 0/3"
+text = "Mistakes: 1/3"
 
-[node name="HeartsBox" type="HBoxContainer" parent="SafeArea/ContentVBox/StatusRow/MistakesHBox"]
+[node name="HeartsBox" type="HBoxContainer" parent="SafeMarginContainer/MainVBox/MistakesRow/MistakesHBox"]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="Heart1" type="TextureRect" parent="SafeArea/ContentVBox/StatusRow/MistakesHBox/HeartsBox"]
+[node name="Heart1" type="TextureRect" parent="SafeMarginContainer/MainVBox/MistakesRow/MistakesHBox/HeartsBox"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 size_flags_vertical = 4
@@ -190,7 +216,7 @@ texture = ExtResource("13_heart_dark")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Heart2" type="TextureRect" parent="SafeArea/ContentVBox/StatusRow/MistakesHBox/HeartsBox"]
+[node name="Heart2" type="TextureRect" parent="SafeMarginContainer/MainVBox/MistakesRow/MistakesHBox/HeartsBox"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 size_flags_vertical = 4
@@ -198,7 +224,7 @@ texture = ExtResource("13_heart_dark")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Heart3" type="TextureRect" parent="SafeArea/ContentVBox/StatusRow/MistakesHBox/HeartsBox"]
+[node name="Heart3" type="TextureRect" parent="SafeMarginContainer/MainVBox/MistakesRow/MistakesHBox/HeartsBox"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 size_flags_vertical = 4
@@ -206,26 +232,595 @@ texture = ExtResource("13_heart_dark")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Spacer" type="Control" parent="SafeArea/ContentVBox/StatusRow"]
+[node name="Spacer" type="Control" parent="SafeMarginContainer/MainVBox/MistakesRow"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="DifficultyBadge" type="PanelContainer" parent="SafeArea/ContentVBox/StatusRow"]
+[node name="DifficultyBadge" type="PanelContainer" parent="SafeMarginContainer/MainVBox/MistakesRow"]
 layout_mode = 2
 theme_override_styles/panel = ExtResource("15_diff_pill")
 
-[node name="DiffLabel" type="Label" parent="SafeArea/ContentVBox/StatusRow/DifficultyBadge"]
+[node name="DiffLabel" type="Label" parent="SafeMarginContainer/MainVBox/MistakesRow/DifficultyBadge"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.01, 0.52, 0.78, 1)
 theme_override_font_sizes/font_size = 30
 text = "Easy"
 
-[node name="KeypadArea" type="Control" parent="SafeArea/ContentVBox"]
-custom_minimum_size = Vector2(0, 275)
+[node name="ActionButtonsRow" type="HBoxContainer" parent="SafeMarginContainer/MainVBox"]
 layout_mode = 2
+theme_override_constants/separation = 14
+alignment = 1
 
-[node name="NumericKeypad" parent="SafeArea/ContentVBox/KeypadArea" instance=ExtResource("16_keypad")]
+[node name="BtnCounts" type="Button" parent="SafeMarginContainer/MainVBox/ActionButtonsRow"]
+custom_minimum_size = Vector2(0, 110)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_styles/normal = ExtResource("16_tool_box")
+theme_override_styles/hover = ExtResource("16_tool_box")
+theme_override_styles/pressed = ExtResource("16_tool_box")
+
+[node name="VBox" type="VBoxContainer" parent="SafeMarginContainer/MainVBox/ActionButtonsRow/BtnCounts"]
 layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="Icon" type="TextureRect" parent="SafeMarginContainer/MainVBox/ActionButtonsRow/BtnCounts/VBox"]
+custom_minimum_size = Vector2(44, 44)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("18_ic_counts")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="SafeMarginContainer/MainVBox/ActionButtonsRow/BtnCounts/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.12, 0.18, 0.3, 1)
+theme_override_font_sizes/font_size = 22
+text = "Counts"
+horizontal_alignment = 1
+
+[node name="Badge" type="Label" parent="SafeMarginContainer/MainVBox/ActionButtonsRow/BtnCounts"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -24.0
+offset_top = -8.0
+offset_right = 12.0
+offset_bottom = 24.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = ExtResource("17_badge_pill")
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BtnUndo" type="Button" parent="SafeMarginContainer/MainVBox/ActionButtonsRow"]
+custom_minimum_size = Vector2(0, 110)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_styles/normal = ExtResource("16_tool_box")
+theme_override_styles/hover = ExtResource("16_tool_box")
+theme_override_styles/pressed = ExtResource("16_tool_box")
+
+[node name="VBox" type="VBoxContainer" parent="SafeMarginContainer/MainVBox/ActionButtonsRow/BtnUndo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="Icon" type="TextureRect" parent="SafeMarginContainer/MainVBox/ActionButtonsRow/BtnUndo/VBox"]
+custom_minimum_size = Vector2(44, 44)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("19_ic_undo")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="SafeMarginContainer/MainVBox/ActionButtonsRow/BtnUndo/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.12, 0.18, 0.3, 1)
+theme_override_font_sizes/font_size = 22
+text = "Undo"
+horizontal_alignment = 1
+
+[node name="Badge" type="Label" parent="SafeMarginContainer/MainVBox/ActionButtonsRow/BtnUndo"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -24.0
+offset_top = -8.0
+offset_right = 12.0
+offset_bottom = 24.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = ExtResource("17_badge_pill")
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BtnErase" type="Button" parent="SafeMarginContainer/MainVBox/ActionButtonsRow"]
+custom_minimum_size = Vector2(0, 110)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_styles/normal = ExtResource("16_tool_box")
+theme_override_styles/hover = ExtResource("16_tool_box")
+theme_override_styles/pressed = ExtResource("16_tool_box")
+
+[node name="VBox" type="VBoxContainer" parent="SafeMarginContainer/MainVBox/ActionButtonsRow/BtnErase"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="Icon" type="TextureRect" parent="SafeMarginContainer/MainVBox/ActionButtonsRow/BtnErase/VBox"]
+custom_minimum_size = Vector2(44, 44)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("20_ic_erase")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="SafeMarginContainer/MainVBox/ActionButtonsRow/BtnErase/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.12, 0.18, 0.3, 1)
+theme_override_font_sizes/font_size = 22
+text = "Erase"
+horizontal_alignment = 1
+
+[node name="Badge" type="Label" parent="SafeMarginContainer/MainVBox/ActionButtonsRow/BtnErase"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -24.0
+offset_top = -8.0
+offset_right = 12.0
+offset_bottom = 24.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = ExtResource("17_badge_pill")
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BtnNotes" type="Button" parent="SafeMarginContainer/MainVBox/ActionButtonsRow"]
+custom_minimum_size = Vector2(0, 110)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_styles/normal = ExtResource("16_tool_box")
+theme_override_styles/hover = ExtResource("16_tool_box")
+theme_override_styles/pressed = ExtResource("16_tool_box")
+
+[node name="VBox" type="VBoxContainer" parent="SafeMarginContainer/MainVBox/ActionButtonsRow/BtnNotes"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="Icon" type="TextureRect" parent="SafeMarginContainer/MainVBox/ActionButtonsRow/BtnNotes/VBox"]
+custom_minimum_size = Vector2(44, 44)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("21_ic_notes")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="SafeMarginContainer/MainVBox/ActionButtonsRow/BtnNotes/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.12, 0.18, 0.3, 1)
+theme_override_font_sizes/font_size = 22
+text = "Notes"
+horizontal_alignment = 1
+
+[node name="Badge" type="Label" parent="SafeMarginContainer/MainVBox/ActionButtonsRow/BtnNotes"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -24.0
+offset_top = -8.0
+offset_right = 12.0
+offset_bottom = 24.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = ExtResource("17_badge_pill")
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BtnHint" type="Button" parent="SafeMarginContainer/MainVBox/ActionButtonsRow"]
+custom_minimum_size = Vector2(0, 110)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_styles/normal = ExtResource("16_tool_box")
+theme_override_styles/hover = ExtResource("16_tool_box")
+theme_override_styles/pressed = ExtResource("16_tool_box")
+
+[node name="VBox" type="VBoxContainer" parent="SafeMarginContainer/MainVBox/ActionButtonsRow/BtnHint"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="Icon" type="TextureRect" parent="SafeMarginContainer/MainVBox/ActionButtonsRow/BtnHint/VBox"]
+custom_minimum_size = Vector2(44, 44)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("22_ic_hint")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="SafeMarginContainer/MainVBox/ActionButtonsRow/BtnHint/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.12, 0.18, 0.3, 1)
+theme_override_font_sizes/font_size = 22
+text = "Smart Hint"
+horizontal_alignment = 1
+
+[node name="Badge" type="Label" parent="SafeMarginContainer/MainVBox/ActionButtonsRow/BtnHint"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -24.0
+offset_top = -8.0
+offset_right = 12.0
+offset_bottom = 24.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = ExtResource("17_badge_pill")
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NumberPadTray" type="HBoxContainer" parent="SafeMarginContainer/MainVBox"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Btn1" type="Button" parent="SafeMarginContainer/MainVBox/NumberPadTray"]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_styles/normal = ExtResource("23_capsule_box")
+theme_override_styles/hover = ExtResource("23_capsule_box")
+theme_override_styles/pressed = ExtResource("23_capsule_box")
+
+[node name="VBox" type="VBoxContainer" parent="SafeMarginContainer/MainVBox/NumberPadTray/Btn1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="DigitLabel" type="Label" parent="SafeMarginContainer/MainVBox/NumberPadTray/Btn1/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.12, 0.18, 0.3, 1)
+theme_override_font_sizes/font_size = 46
+text = "1"
+horizontal_alignment = 1
+
+[node name="CountLabel" type="Label" parent="SafeMarginContainer/MainVBox/NumberPadTray/Btn1/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.58, 0.64, 0.72, 1)
+theme_override_font_sizes/font_size = 20
+text = "7"
+horizontal_alignment = 1
+
+[node name="Btn2" type="Button" parent="SafeMarginContainer/MainVBox/NumberPadTray"]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_styles/normal = ExtResource("23_capsule_box")
+theme_override_styles/hover = ExtResource("23_capsule_box")
+theme_override_styles/pressed = ExtResource("23_capsule_box")
+
+[node name="VBox" type="VBoxContainer" parent="SafeMarginContainer/MainVBox/NumberPadTray/Btn2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="DigitLabel" type="Label" parent="SafeMarginContainer/MainVBox/NumberPadTray/Btn2/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.12, 0.18, 0.3, 1)
+theme_override_font_sizes/font_size = 46
+text = "2"
+horizontal_alignment = 1
+
+[node name="CountLabel" type="Label" parent="SafeMarginContainer/MainVBox/NumberPadTray/Btn2/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.58, 0.64, 0.72, 1)
+theme_override_font_sizes/font_size = 20
+text = "4"
+horizontal_alignment = 1
+
+[node name="Btn3" type="Button" parent="SafeMarginContainer/MainVBox/NumberPadTray"]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_styles/normal = ExtResource("23_capsule_box")
+theme_override_styles/hover = ExtResource("23_capsule_box")
+theme_override_styles/pressed = ExtResource("23_capsule_box")
+
+[node name="VBox" type="VBoxContainer" parent="SafeMarginContainer/MainVBox/NumberPadTray/Btn3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="DigitLabel" type="Label" parent="SafeMarginContainer/MainVBox/NumberPadTray/Btn3/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.12, 0.18, 0.3, 1)
+theme_override_font_sizes/font_size = 46
+text = "3"
+horizontal_alignment = 1
+
+[node name="CountLabel" type="Label" parent="SafeMarginContainer/MainVBox/NumberPadTray/Btn3/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.58, 0.64, 0.72, 1)
+theme_override_font_sizes/font_size = 20
+text = "6"
+horizontal_alignment = 1
+
+[node name="Btn4" type="Button" parent="SafeMarginContainer/MainVBox/NumberPadTray"]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_styles/normal = ExtResource("23_capsule_box")
+theme_override_styles/hover = ExtResource("23_capsule_box")
+theme_override_styles/pressed = ExtResource("23_capsule_box")
+
+[node name="VBox" type="VBoxContainer" parent="SafeMarginContainer/MainVBox/NumberPadTray/Btn4"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="DigitLabel" type="Label" parent="SafeMarginContainer/MainVBox/NumberPadTray/Btn4/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.12, 0.18, 0.3, 1)
+theme_override_font_sizes/font_size = 46
+text = "4"
+horizontal_alignment = 1
+
+[node name="CountLabel" type="Label" parent="SafeMarginContainer/MainVBox/NumberPadTray/Btn4/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.58, 0.64, 0.72, 1)
+theme_override_font_sizes/font_size = 20
+text = "7"
+horizontal_alignment = 1
+
+[node name="Btn5" type="Button" parent="SafeMarginContainer/MainVBox/NumberPadTray"]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_styles/normal = ExtResource("23_capsule_box")
+theme_override_styles/hover = ExtResource("23_capsule_box")
+theme_override_styles/pressed = ExtResource("23_capsule_box")
+
+[node name="VBox" type="VBoxContainer" parent="SafeMarginContainer/MainVBox/NumberPadTray/Btn5"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="DigitLabel" type="Label" parent="SafeMarginContainer/MainVBox/NumberPadTray/Btn5/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.12, 0.18, 0.3, 1)
+theme_override_font_sizes/font_size = 46
+text = "5"
+horizontal_alignment = 1
+
+[node name="CountLabel" type="Label" parent="SafeMarginContainer/MainVBox/NumberPadTray/Btn5/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.58, 0.64, 0.72, 1)
+theme_override_font_sizes/font_size = 20
+text = "3"
+horizontal_alignment = 1
+
+[node name="Btn6" type="Button" parent="SafeMarginContainer/MainVBox/NumberPadTray"]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_styles/normal = ExtResource("23_capsule_box")
+theme_override_styles/hover = ExtResource("23_capsule_box")
+theme_override_styles/pressed = ExtResource("23_capsule_box")
+
+[node name="VBox" type="VBoxContainer" parent="SafeMarginContainer/MainVBox/NumberPadTray/Btn6"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="DigitLabel" type="Label" parent="SafeMarginContainer/MainVBox/NumberPadTray/Btn6/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.12, 0.18, 0.3, 1)
+theme_override_font_sizes/font_size = 46
+text = "6"
+horizontal_alignment = 1
+
+[node name="CountLabel" type="Label" parent="SafeMarginContainer/MainVBox/NumberPadTray/Btn6/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.58, 0.64, 0.72, 1)
+theme_override_font_sizes/font_size = 20
+text = "5"
+horizontal_alignment = 1
+
+[node name="Btn7" type="Button" parent="SafeMarginContainer/MainVBox/NumberPadTray"]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_styles/normal = ExtResource("23_capsule_box")
+theme_override_styles/hover = ExtResource("23_capsule_box")
+theme_override_styles/pressed = ExtResource("23_capsule_box")
+
+[node name="VBox" type="VBoxContainer" parent="SafeMarginContainer/MainVBox/NumberPadTray/Btn7"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="DigitLabel" type="Label" parent="SafeMarginContainer/MainVBox/NumberPadTray/Btn7/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.12, 0.18, 0.3, 1)
+theme_override_font_sizes/font_size = 46
+text = "7"
+horizontal_alignment = 1
+
+[node name="CountLabel" type="Label" parent="SafeMarginContainer/MainVBox/NumberPadTray/Btn7/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.58, 0.64, 0.72, 1)
+theme_override_font_sizes/font_size = 20
+text = "4"
+horizontal_alignment = 1
+
+[node name="Btn8" type="Button" parent="SafeMarginContainer/MainVBox/NumberPadTray"]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_styles/normal = ExtResource("23_capsule_box")
+theme_override_styles/hover = ExtResource("23_capsule_box")
+theme_override_styles/pressed = ExtResource("23_capsule_box")
+
+[node name="VBox" type="VBoxContainer" parent="SafeMarginContainer/MainVBox/NumberPadTray/Btn8"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="DigitLabel" type="Label" parent="SafeMarginContainer/MainVBox/NumberPadTray/Btn8/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.12, 0.18, 0.3, 1)
+theme_override_font_sizes/font_size = 46
+text = "8"
+horizontal_alignment = 1
+
+[node name="CountLabel" type="Label" parent="SafeMarginContainer/MainVBox/NumberPadTray/Btn8/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.58, 0.64, 0.72, 1)
+theme_override_font_sizes/font_size = 20
+text = "3"
+horizontal_alignment = 1
+
+[node name="Btn9" type="Button" parent="SafeMarginContainer/MainVBox/NumberPadTray"]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_styles/normal = ExtResource("23_capsule_box")
+theme_override_styles/hover = ExtResource("23_capsule_box")
+theme_override_styles/pressed = ExtResource("23_capsule_box")
+
+[node name="VBox" type="VBoxContainer" parent="SafeMarginContainer/MainVBox/NumberPadTray/Btn9"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="DigitLabel" type="Label" parent="SafeMarginContainer/MainVBox/NumberPadTray/Btn9/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.12, 0.18, 0.3, 1)
+theme_override_font_sizes/font_size = 46
+text = "9"
+horizontal_alignment = 1
+
+[node name="CountLabel" type="Label" parent="SafeMarginContainer/MainVBox/NumberPadTray/Btn9/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.58, 0.64, 0.72, 1)
+theme_override_font_sizes/font_size = 20
+text = "4"
+horizontal_alignment = 1
 
 [node name="ReviveModal" type="Control" parent="."]
 visible = false
@@ -256,7 +851,7 @@ grow_vertical = 2
 [node name="ModalPanel" type="PanelContainer" parent="ReviveModal/CenterContainer"]
 custom_minimum_size = Vector2(650, 480)
 layout_mode = 2
-theme_override_styles/panel = ExtResource("17_modal_card")
+theme_override_styles/panel = ExtResource("24_modal_card")
 
 [node name="VBox" type="VBoxContainer" parent="ReviveModal/CenterContainer/ModalPanel"]
 layout_mode = 2
@@ -282,7 +877,7 @@ layout_mode = 2
 focus_mode = 0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 34
-theme_override_styles/normal = ExtResource("18_btn_blue")
+theme_override_styles/normal = ExtResource("25_btn_blue")
 text = "🪙 Revive (-50 Coins)"
 
 [node name="BtnReviveAd" type="Button" parent="ReviveModal/CenterContainer/ModalPanel/VBox"]
@@ -291,7 +886,7 @@ layout_mode = 2
 focus_mode = 0
 theme_override_colors/font_color = Color(0.12, 0.23, 0.54, 1)
 theme_override_font_sizes/font_size = 34
-theme_override_styles/normal = ExtResource("19_btn_glass")
+theme_override_styles/normal = ExtResource("26_btn_glass")
 text = "🎬 Watch Ad to Revive"
 
 [node name="BtnGiveUp" type="Button" parent="ReviveModal/CenterContainer/ModalPanel/VBox"]
@@ -332,7 +927,7 @@ grow_vertical = 2
 [node name="ModalPanel" type="PanelContainer" parent="VictoryModal/CenterContainer"]
 custom_minimum_size = Vector2(650, 520)
 layout_mode = 2
-theme_override_styles/panel = ExtResource("17_modal_card")
+theme_override_styles/panel = ExtResource("24_modal_card")
 
 [node name="VBox" type="VBoxContainer" parent="VictoryModal/CenterContainer/ModalPanel"]
 layout_mode = 2
@@ -372,7 +967,7 @@ layout_mode = 2
 focus_mode = 0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 34
-theme_override_styles/normal = ExtResource("18_btn_blue")
+theme_override_styles/normal = ExtResource("25_btn_blue")
 text = "Next Level ▶"
 
 [node name="BtnVictoryHome" type="Button" parent="VictoryModal/CenterContainer/ModalPanel/VBox"]

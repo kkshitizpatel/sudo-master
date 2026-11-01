@@ -4,7 +4,7 @@
 [ext_resource type="StyleBox" path="res://assets/themes/cell_normal.tres" id="2_style"]
 
 [node name="SudokuCellView" type="Control"]
-custom_minimum_size = Vector2(85, 85)
+custom_minimum_size = Vector2(40, 40)
 layout_mode = 3
 anchors_preset = 0
 size_flags_horizontal = 3

@@ -4,23 +4,38 @@
 # Compliant with Godot 4.7 GDScript 2.0 static typing
 extends Control
 
-@onready var btn_back: Button = $SafeArea/ContentVBox/TopBar/BtnBack
-@onready var btn_share: Button = $SafeArea/ContentVBox/TopBar/BtnShare
-@onready var btn_favorite: Button = $SafeArea/ContentVBox/TopBar/BtnFavorite
-@onready var btn_theme: Button = $SafeArea/ContentVBox/TopBar/BtnTheme
-@onready var btn_settings: Button = $SafeArea/ContentVBox/TopBar/BtnSettings
+# Top Bar
+@onready var btn_back: Button = $SafeMarginContainer/MainVBox/TopBar/BtnBack
+@onready var btn_share: Button = $SafeMarginContainer/MainVBox/TopBar/BtnShare
+@onready var btn_favorite: Button = $SafeMarginContainer/MainVBox/TopBar/BtnFavorite
+@onready var btn_theme: Button = $SafeMarginContainer/MainVBox/TopBar/BtnTheme
+@onready var btn_settings: Button = $SafeMarginContainer/MainVBox/TopBar/BtnSettings
 
 # Stats Bar
-@onready var label_score: Label = $SafeArea/ContentVBox/StatsBar/ScoreHBox/ScoreLabel
-@onready var label_level: Label = $SafeArea/ContentVBox/StatsBar/LevelLabel
-@onready var label_timer: Label = $SafeArea/ContentVBox/StatsBar/TimerLabel
+@onready var label_score: Label = $SafeMarginContainer/MainVBox/StatsBar/ScoreHBox/ScoreLabel
+@onready var label_level: Label = $SafeMarginContainer/MainVBox/StatsBar/LevelLabel
+@onready var label_timer: Label = $SafeMarginContainer/MainVBox/StatsBar/TimerLabel
 
-# Status Row
-@onready var label_mistakes: Label = $SafeArea/ContentVBox/StatusRow/MistakesHBox/MistakesLabel
-@onready var heart_1: TextureRect = $SafeArea/ContentVBox/StatusRow/MistakesHBox/HeartsBox/Heart1
-@onready var heart_2: TextureRect = $SafeArea/ContentVBox/StatusRow/MistakesHBox/HeartsBox/Heart2
-@onready var heart_3: TextureRect = $SafeArea/ContentVBox/StatusRow/MistakesHBox/HeartsBox/Heart3
-@onready var diff_label: Label = $SafeArea/ContentVBox/StatusRow/DifficultyBadge/DiffLabel
+# Board
+@onready var sudoku_grid: GridContainer = $SafeMarginContainer/MainVBox/BoardWrapper/BoardAspect/SudokuGrid
+
+# Mistakes Row
+@onready var label_mistakes: Label = $SafeMarginContainer/MainVBox/MistakesRow/MistakesHBox/MistakesLabel
+@onready var heart_1: TextureRect = $SafeMarginContainer/MainVBox/MistakesRow/MistakesHBox/HeartsBox/Heart1
+@onready var heart_2: TextureRect = $SafeMarginContainer/MainVBox/MistakesRow/MistakesHBox/HeartsBox/Heart2
+@onready var heart_3: TextureRect = $SafeMarginContainer/MainVBox/MistakesRow/MistakesHBox/HeartsBox/Heart3
+@onready var diff_label: Label = $SafeMarginContainer/MainVBox/MistakesRow/DifficultyBadge/DiffLabel
+
+# Action Buttons
+@onready var btn_counts: Button = $SafeMarginContainer/MainVBox/ActionButtonsRow/BtnCounts
+@onready var btn_undo: Button = $SafeMarginContainer/MainVBox/ActionButtonsRow/BtnUndo
+@onready var btn_erase: Button = $SafeMarginContainer/MainVBox/ActionButtonsRow/BtnErase
+@onready var btn_notes: Button = $SafeMarginContainer/MainVBox/ActionButtonsRow/BtnNotes
+@onready var btn_hint: Button = $SafeMarginContainer/MainVBox/ActionButtonsRow/BtnHint
+@onready var hint_badge: Label = $SafeMarginContainer/MainVBox/ActionButtonsRow/BtnHint/Badge
+
+# Number Pad Tray
+@onready var number_pad_tray: HBoxContainer = $SafeMarginContainer/MainVBox/NumberPadTray
 
 # Modals
 @onready var revive_modal: Control = $ReviveModal
@@ -38,6 +53,9 @@ extends Control
 var _heart_dark: Texture2D = preload("res://assets/icons/heart_dark.svg")
 var _heart_empty: Texture2D = preload("res://assets/icons/heart_empty.svg")
 
+var digit_buttons: Array[Button] = []
+var count_labels: Array[Label] = []
+
 func _ready() -> void:
 	_apply_safe_area()
 	_update_header_info()
@@ -53,11 +71,30 @@ func _ready() -> void:
 	btn_theme.pressed.connect(_on_theme_pressed)
 	btn_settings.pressed.connect(_on_settings_pressed)
 	
+	# Connect Action Buttons
+	btn_counts.pressed.connect(_on_counts_pressed)
+	btn_undo.pressed.connect(_on_undo_pressed)
+	btn_erase.pressed.connect(_on_erase_pressed)
+	btn_notes.pressed.connect(_on_notes_pressed)
+	btn_hint.pressed.connect(_on_hint_pressed)
+	
+	# Connect Number Pad (1..9)
+	digit_buttons.clear()
+	count_labels.clear()
+	for i in range(1, 10):
+		var btn: Button = number_pad_tray.get_node_or_null("Btn%d" % i) as Button
+		if btn:
+			digit_buttons.append(btn)
+			var d_val: int = i
+			btn.pressed.connect(func(): _on_digit_button_pressed(d_val, btn))
+			var c_label: Label = btn.get_node_or_null("VBox/CountLabel") as Label
+			if c_label:
+				count_labels.append(c_label)
+	
 	# Connect Modals
 	btn_revive_coins.pressed.connect(_on_revive_coins_pressed)
 	btn_revive_ad.pressed.connect(_on_revive_ad_pressed)
 	btn_give_up.pressed.connect(_on_give_up_pressed)
-	
 	btn_next_level.pressed.connect(_on_next_level_pressed)
 	btn_victory_home.pressed.connect(_on_give_up_pressed)
 	
@@ -68,15 +105,23 @@ func _ready() -> void:
 		GameManager.mistake_occurred.connect(_on_mistake_occurred)
 		GameManager.level_completed.connect(_on_level_completed)
 		GameManager.game_over_triggered.connect(_on_game_over)
+		_update_hint_count()
 		
-		# Resume timer if active
+		# Resume or start game
 		if not GameManager.is_game_active:
 			GameManager.start_new_game(GameManager.current_game_mode, GameManager.current_level_id)
 		else:
 			GameManager.resume_timer()
 			
-	if SudokuEngine and SudokuEngine.cells.is_empty():
-		SudokuEngine.load_sample_puzzle("easy")
+	if SudokuEngine:
+		SudokuEngine.remaining_counts_updated.connect(_update_remaining_counts)
+		_update_notes_button_state()
+		if SudokuEngine.cells.is_empty():
+			SudokuEngine.load_sample_puzzle("easy")
+		else:
+			_update_remaining_counts(SudokuEngine.get_remaining_counts())
+			
+	SignalBus.theme_changed.connect(_on_theme_changed)
 
 func _apply_safe_area() -> void:
 	var safe_area: Rect2i = DisplayServer.get_display_safe_area()
@@ -85,14 +130,13 @@ func _apply_safe_area() -> void:
 	if window_size.y > 0 and safe_area.size.y > 0:
 		var margin_top: int = safe_area.position.y
 		var margin_bottom: int = window_size.y - (safe_area.position.y + safe_area.size.y)
-		$SafeArea.add_theme_constant_override("margin_top", maxi(24, margin_top))
-		$SafeArea.add_theme_constant_override("margin_bottom", maxi(20, margin_bottom))
+		$SafeMarginContainer.add_theme_constant_override("margin_top", maxi(40, margin_top))
+		$SafeMarginContainer.add_theme_constant_override("margin_bottom", maxi(40, margin_bottom))
 
 func _update_header_info() -> void:
 	if not GameManager:
 		return
 		
-	# Level Label
 	match GameManager.current_game_mode:
 		0:
 			label_level.text = "Level %d" % GameManager.current_level_id
@@ -122,23 +166,138 @@ func _update_hearts(mistakes: int) -> void:
 	if label_mistakes:
 		label_mistakes.text = "Mistakes: %d/3" % mini(3, mistakes)
 		
-	# Heart 1
 	if mistakes >= 1:
 		heart_1.texture = _heart_empty
 	else:
 		heart_1.texture = _heart_dark
 		
-	# Heart 2
 	if mistakes >= 2:
 		heart_2.texture = _heart_empty
 	else:
 		heart_2.texture = _heart_dark
 		
-	# Heart 3
 	if mistakes >= 3:
 		heart_3.texture = _heart_empty
 	else:
 		heart_3.texture = _heart_dark
+
+# ------------------------------------------------------------------------------
+# Action Tools & Digits Handling
+# ------------------------------------------------------------------------------
+
+func _pop_button(btn: Control) -> void:
+	if btn:
+		var tween: Tween = create_tween().set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+		btn.pivot_offset = btn.size / 2.0
+		tween.tween_property(btn, "scale", Vector2(0.92, 0.92), 0.06)
+		tween.tween_property(btn, "scale", Vector2(1.0, 1.0), 0.1)
+
+func _on_digit_button_pressed(digit: int, btn: Control) -> void:
+	_pop_button(btn)
+	if SudokuEngine:
+		SudokuEngine.input_digit(digit)
+
+func _on_counts_pressed() -> void:
+	_pop_button(btn_counts)
+	SignalBus.play_sfx.emit("button_click")
+	SignalBus.trigger_haptic.emit(20)
+
+func _on_undo_pressed() -> void:
+	_pop_button(btn_undo)
+	if SudokuEngine:
+		SudokuEngine.undo_last_move()
+
+func _on_erase_pressed() -> void:
+	_pop_button(btn_erase)
+	if SudokuEngine:
+		SudokuEngine.erase_selected_cell()
+
+func _on_notes_pressed() -> void:
+	_pop_button(btn_notes)
+	if SudokuEngine:
+		var _mode: bool = SudokuEngine.toggle_note_mode()
+		_update_notes_button_state()
+		SignalBus.play_sfx.emit("note_tick")
+		SignalBus.trigger_haptic.emit(20)
+
+func _on_hint_pressed() -> void:
+	_pop_button(btn_hint)
+	if GameManager and GameManager.hints_remaining > 0:
+		if SudokuEngine:
+			SudokuEngine.request_smart_hint()
+			_update_hint_count()
+	else:
+		SignalBus.play_sfx.emit("error")
+		SignalBus.trigger_haptic.emit(80)
+
+func _update_notes_button_state() -> void:
+	if not btn_notes:
+		return
+	if SudokuEngine and SudokuEngine.is_note_mode:
+		btn_notes.modulate = Color(0.2, 0.7, 1.0, 1.0)
+	else:
+		btn_notes.modulate = Color(1.0, 1.0, 1.0, 1.0)
+
+func _update_hint_count() -> void:
+	if hint_badge and GameManager:
+		hint_badge.text = str(GameManager.hints_remaining)
+
+func _update_remaining_counts(counts: Dictionary) -> void:
+	var success_col: Color = Color("#10B981")
+	var notes_col: Color = Color("#64748B")
+	if ThemeManager:
+		success_col = ThemeManager.get_success_color()
+		notes_col = ThemeManager.get_notes_text_color()
+		
+	for i in range(1, 10):
+		var idx: int = i - 1
+		if idx < count_labels.size() and idx < digit_buttons.size():
+			var rem: int = counts.get(i, 0)
+			var c_label: Label = count_labels[idx]
+			var btn: Button = digit_buttons[idx]
+			
+			if rem <= 0:
+				c_label.text = "✔"
+				c_label.add_theme_color_override("font_color", success_col)
+				btn.modulate.a = 0.35
+			else:
+				c_label.text = str(rem)
+				c_label.add_theme_color_override("font_color", notes_col)
+				btn.modulate.a = 1.0
+
+func _on_theme_changed(_id: String, _p: Color, _s: Color) -> void:
+	_update_notes_button_state()
+	if SudokuEngine:
+		_update_remaining_counts(SudokuEngine.get_remaining_counts())
+
+func _unhandled_input(event: InputEvent) -> void:
+	if not (event is InputEventKey) or not event.is_pressed() or event.is_echo():
+		return
+		
+	var key_event: InputEventKey = event as InputEventKey
+	var keycode: Key = key_event.keycode
+	
+	# Digits 1..9
+	if keycode >= KEY_1 and keycode <= KEY_9:
+		var d: int = int(keycode) - int(KEY_0)
+		if SudokuEngine:
+			SudokuEngine.input_digit(d)
+	elif keycode >= KEY_KP_1 and keycode <= KEY_KP_9:
+		var d: int = int(keycode) - int(KEY_KP_0)
+		if SudokuEngine:
+			SudokuEngine.input_digit(d)
+	elif keycode == KEY_BACKSPACE or keycode == KEY_DELETE:
+		_on_erase_pressed()
+	elif keycode == KEY_N:
+		_on_notes_pressed()
+	elif keycode == KEY_H:
+		_on_hint_pressed()
+	elif keycode == KEY_Z and key_event.ctrl_pressed:
+		_on_undo_pressed()
+
+# ------------------------------------------------------------------------------
+# Navigation & Top Bar
+# ------------------------------------------------------------------------------
 
 func _on_back_pressed() -> void:
 	SignalBus.play_sfx.emit("button_click")
